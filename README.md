@@ -1,42 +1,36 @@
-# Plateforme Web de Campagne BDE - "Campus Uni & Connecté"
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Portail web participatif pour la campagne électorale du BDE et le futur mandat étudiant.
+## Getting Started
 
----
+First, run the development server:
 
-## 👥 Guide de Collaboration en Binôme (Antigravity & Git)
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-### 1. Configuration du Dépôt GitHub / GitLab
-1. **Création du repo :** L'un de vous crée un dépôt privé sur GitHub (ex: `bde-campagne-web`) et invite l'autre en collaborateur.
-2. **Liaison locale :**
-   ```bash
-   git remote add origin https://github.com/VOTRE_USER/bde-campagne-web.git
-   git branch -M main
-   git push -u origin main
-   ```
-3. **Clonage par le binôme :** Le second développeur clone le dépôt sur sa machine et l'ouvre dans son Antigravity IDE.
-4. **Alignement des agents :** Grâce au fichier `AGENTS.md` présent à la racine, vos deux agents Antigravity partagent automatiquement les mêmes consignes, règles et styles.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### 2. Répartition Recommandée des Tâches (4 Sprints / 9 Jours)
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-| Développeur A (Lead UI & Pages Publiques) | Développeur B (Lead Backend, Auth & Intéractivité) |
-| :--- | :--- |
-| **Branche :** `feature/ui-vitrine` | **Branche :** `feature/auth-database` |
-| • Page d'Accueil (Hero, Compte à rebours, Manifeste) | • Schéma de base Supabase (Users, Idées, Votes, SOS) |
-| • Espace Vision & Trombinoscope équipe | • Auth & vérification par email universitaire |
-| • Programme interactif & Jauges d'avancement | • Moteur de la boîte à idées & système d'Upvotes (1 vote/user) |
-| • Agenda & intégration Google/Apple Calendar | • Formulaire chiffré "SOS Étudiant" & Tutorat |
-| • Catalogue partenaires & Bons plans | • Espace modération Admin & API routes |
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
----
+## Learn More
 
-## 🎨 Spécifications & Charte Graphique
+To learn more about Next.js, take a look at the following resources:
 
-- **Couleurs :**
-  - Primaire : Bleu Royal `#1E3A8A`
-  - Secondaire : Ambre / Orange `#F59E0B`
-  - Accent : Bleu Ciel `#3B82F6`
-  - Fond : `#FFFFFF` / `#F8FAFC`
-  - Texte : `#334155`
-- **Police :** `Inter`
-- **Cahier des charges source :** [Cahier_des_Charges_BDE.pdf](Cahier_des_Charges_BDE.pdf)
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

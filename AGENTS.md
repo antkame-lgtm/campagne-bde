@@ -1,28 +1,9 @@
-# Directives Agent - Plateforme "Campus Uni & Connecté" (BDE)
+<!-- BEGIN:nextjs-agent-rules -->
 
-Directives communes pour les instances Antigravity des deux développeurs travaillant sur le projet.
+## This is NOT the Next.js you know
 
-## 1. Contexte & Objectif
-Plateforme web participative de campagne électorale et de mandat pour la présidence du BDE.
-Mobile-first (85%+ des visites), responsive, rapide (< 1.5s sur 4G), accessible et sécurisée (RGPD).
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
 
-## 2. Stack Technique Retenue
-- **Framework Frontend :** Next.js 14+ (App Router) + TypeScript + Tailwind CSS
-- **Composants & Icônes :** Lucide-react + Radix UI / shadcn/ui
-- **Backend & Données :** Supabase (PostgreSQL, Auth, Realtime) ou Firebase
-- **Déploiement :** Vercel
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
-## 3. Charte Graphique & Design Tokens
-Respect strict de la palette définie au cahier des charges :
-- **Primaire (Institutionnel) :** Bleu Royal / Navy `#1E3A8A`
-- **Secondaire (Dynamisme) :** Orange Chaud / Ambre `#F59E0B`
-- **Accent :** Bleu Ciel `#3B82F6`
-- **Surfaces :** Blanc `#FFFFFF` / Gris Perle `#F8FAFC`
-- **Texte :** Ardoise Sombre `#334155`
-- **Typographie :** Famille `Inter` (sans-serif)
-
-## 4. Règles de Développement Multi-Développeurs
-- **Modifications chirurgicales :** Travailler par branches isolées (`feature/<module>`).
-- **Typage strict :** TypeScript sans `any`.
-- **Validation des données :** Schémas Zod pour chaque formulaire (idées, SOS, comité de soutien).
-- **Sécurité :** Chiffrement des formulaires SOS Étudiant, restriction du vote à 1 vote par étudiant vérifié.
+<!-- END:nextjs-agent-rules -->
