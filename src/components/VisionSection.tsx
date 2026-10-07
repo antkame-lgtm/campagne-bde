@@ -36,12 +36,12 @@ export default function VisionSection() {
   ];
 
   return (
-    <section id="vision" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+    <section id="vision" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-100 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête de section */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 rounded-md text-xs font-bold uppercase tracking-wider mb-3 border border-blue-200/60 dark:border-blue-900/40">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200/80 dark:border-sky-900/40">
             <Compass className="w-3.5 h-3.5" />
             <span>Section 3 • Notre vision</span>
           </div>
@@ -62,14 +62,14 @@ export default function VisionSection() {
             return (
               <div
                 key={pillar.num}
-                className="p-6 rounded-2xl bg-[#F8FAFC] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-blue-300 dark:hover:border-blue-700 transition-all hover:shadow-sm"
+                className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-slate-800 flex flex-col justify-between hover:border-sky-300 dark:hover:border-sky-600 transition-all shadow-xs hover:shadow-md"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-2xl font-black text-[#1E3A8A] dark:text-blue-400">
+                    <span className="font-mono text-2xl font-black text-sky-500 dark:text-sky-400">
                       {pillar.num}
                     </span>
-                    <div className="w-9 h-9 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 flex items-center justify-center">
+                    <div className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-300 flex items-center justify-center border border-sky-100/80">
                       <Icon className="w-4 h-4" />
                     </div>
                   </div>
@@ -83,8 +83,8 @@ export default function VisionSection() {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] font-semibold text-[#D97706] dark:text-amber-400 flex items-center space-x-1.5">
-                  <Sparkles className="w-3.5 h-3.5 shrink-0" />
+                <div className="pt-3 border-t border-sky-100/80 dark:border-slate-800 text-[11px] font-bold text-sky-600 dark:text-sky-300 flex items-center space-x-1.5">
+                  <Sparkles className="w-3.5 h-3.5 shrink-0 text-sky-500" />
                   <span>{pillar.highlight}</span>
                 </div>
               </div>

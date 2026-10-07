@@ -32,13 +32,13 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
   };
 
   return (
-    <section id="elections" className="py-16 sm:py-24 bg-[#F8FAFC] dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+    <section id="elections" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-100 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 rounded-md text-xs font-bold uppercase tracking-wider mb-3 border border-blue-200/60 dark:border-blue-900/40">
-            <Vote className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200/80 dark:border-sky-900/40">
+            <Vote className="w-3.5 h-3.5 text-sky-500" />
             <span>Modalités Officielles de Scrutin</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -52,8 +52,8 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
 
         {/* 3 Cartes Étapes du Vote */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-            <div className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-950 text-[#1E3A8A] dark:text-blue-300 w-fit mb-3">
+          <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs hover:border-sky-300 transition-colors">
+            <div className="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-300 w-fit mb-3 border border-sky-100">
               ÉTAPE 01
             </div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Quand voter ?</h3>
@@ -62,8 +62,8 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-            <div className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 w-fit mb-3">
+          <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs hover:border-sky-300 transition-colors">
+            <div className="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-300 w-fit mb-3 border border-sky-100">
               ÉTAPE 02
             </div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Quels justificatifs ?</h3>
@@ -72,8 +72,8 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xs">
-            <div className="font-mono text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 w-fit mb-3">
+          <div className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-xs hover:border-sky-300 transition-colors">
+            <div className="font-mono text-xs font-bold px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-300 w-fit mb-3 border border-sky-100">
               ÉTAPE 03
             </div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">Où voter ?</h3>
@@ -89,7 +89,7 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
           {/* FAQ Accordéon */}
           <div className="lg:col-span-7 space-y-3">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center space-x-2">
-              <HelpCircle className="w-5 h-5 text-[#1E3A8A] dark:text-blue-400" />
+              <HelpCircle className="w-5 h-5 text-sky-500" />
               <span>Foire Aux Questions Fréquentes</span>
             </h3>
 
@@ -98,22 +98,26 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
               return (
                 <div
                   key={idx}
-                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden transition-all"
+                  className={`rounded-2xl border transition-all ${
+                    isOpen
+                      ? "border-sky-300 bg-sky-50/20 dark:bg-slate-900 dark:border-sky-800"
+                      : "border-sky-100 dark:border-slate-800 bg-white dark:bg-slate-900"
+                  }`}
                 >
                   <button
                     onClick={() => toggleFaq(idx)}
-                    className="w-full p-4 text-left flex items-center justify-between font-bold text-sm text-slate-900 dark:text-white hover:text-[#1E3A8A] dark:hover:text-blue-400 cursor-pointer"
+                    className="w-full p-4 sm:p-5 text-left flex items-center justify-between space-x-4 cursor-pointer"
                   >
-                    <span>{item.question}</span>
-                    {isOpen ? (
-                      <ChevronUp className="w-4 h-4 text-slate-400 shrink-0 ml-2" />
-                    ) : (
-                      <ChevronDown className="w-4 h-4 text-slate-400 shrink-0 ml-2" />
-                    )}
+                    <span className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                      {item.question}
+                    </span>
+                    <span className="p-1 rounded-lg bg-sky-50 dark:bg-slate-800 text-sky-600 dark:text-sky-400 shrink-0">
+                      {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </span>
                   </button>
 
                   {isOpen && (
-                    <div className="px-4 pb-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-t border-slate-100 dark:border-slate-800 pt-3 leading-relaxed">
+                    <div className="px-4 pb-5 sm:px-5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed border-t border-sky-50 dark:border-slate-800 pt-3">
                       {item.answer}
                     </div>
                   )}
@@ -122,30 +126,33 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
             })}
           </div>
 
-          {/* Formulaire de Ralliement au Comité de Soutien */}
-          <div className="lg:col-span-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
-            <div className="flex items-center space-x-2 text-xs font-bold text-[#1E3A8A] dark:text-blue-400 uppercase tracking-wider mb-2">
-              <UserPlus className="w-4 h-4" />
-              <span>Engagement &amp; Bénévolat</span>
+          {/* Comité de soutien officiel */}
+          <div className="lg:col-span-5 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-sky-100 dark:border-slate-800 shadow-xl shadow-sky-500/5 space-y-5">
+            <div className="space-y-2">
+              <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider border border-sky-200/80">
+                <UserPlus className="w-3.5 h-3.5 text-sky-500" />
+                <span>Comité Officiel</span>
+              </div>
+              <h3 className="text-xl font-black text-slate-900 dark:text-white">
+                Rejoindre le Comité de Soutien
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+                Apportez votre signature publique pour soutenir le mandat de Salimata et recevoir nos informations de campagne.
+              </p>
             </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
-              Rejoindre le Comité de Soutien
-            </h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
-              Donnez de la voix à notre programme. Rejoignez les 420+ étudiants mobilisés 
-              pour porter la liste le jour du vote.
-            </p>
 
             {supportJoined ? (
-              <div className="p-6 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 rounded-2xl text-center space-y-2">
-                <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mx-auto" />
-                <h4 className="font-bold text-emerald-900 dark:text-emerald-200 text-sm">Bienvenue dans l&apos;équipe !</h4>
-                <p className="text-xs text-emerald-700 dark:text-emerald-300">
-                  Votre nom a été ajouté à la liste des soutiens officiels.
+              <div className="p-5 bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800 rounded-2xl text-center space-y-2">
+                <div className="w-9 h-9 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-600 dark:text-sky-300 mx-auto flex items-center justify-center font-bold">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <h4 className="text-sm font-bold text-sky-900 dark:text-sky-200">Merci pour votre soutien !</h4>
+                <p className="text-xs text-sky-700 dark:text-sky-300">
+                  Votre nom a été ajouté à la liste officielle des soutiens de la campagne.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSupportSubmit} className="space-y-4">
+              <form onSubmit={handleSupportSubmit} className="space-y-3.5">
                 <div>
                   <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
                     Prénom &amp; Nom *
@@ -156,7 +163,7 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
                     placeholder="Ex: Sarah Delorme"
                     value={supportName}
                     onChange={(e) => setSupportName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-[#1E3A8A]"
+                    className="w-full px-4 py-2.5 bg-white dark:bg-slate-950 border border-sky-100 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
 
@@ -170,13 +177,13 @@ export default function VotingGuideSection({ onJoinSupport }: VotingGuideSection
                     placeholder="sarah.delorme@ecole.fr"
                     value={supportEmail}
                     onChange={(e) => setSupportEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-[#1E3A8A]"
+                    className="w-full px-4 py-2.5 bg-white dark:bg-slate-950 border border-sky-100 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-sky-500"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-[#1E3A8A] text-white font-bold text-xs rounded-xl hover:bg-[#172554] shadow-md transition-all cursor-pointer"
+                  className="w-full py-3 bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs rounded-xl shadow-md shadow-sky-500/25 transition-all cursor-pointer active:scale-[0.99]"
                 >
                   Je rejoins le comité officiel
                 </button>

@@ -2,17 +2,17 @@
 
 import React from "react";
 import { IMPACT_COMPARISONS } from "../data/mockData";
-import { HelpCircle, AlertCircle, CheckCircle, ArrowRight, Sparkles, TrendingUp } from "lucide-react";
+import { HelpCircle, AlertCircle, CheckCircle, TrendingUp } from "lucide-react";
 
 export default function ImpactSection() {
   return (
-    <section id="impact" className="py-16 sm:py-24 bg-[#F8FAFC] dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
+    <section id="impact" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-100 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête de section */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-amber-50 dark:bg-amber-950/60 text-[#D97706] dark:text-amber-400 border border-amber-200 dark:border-amber-900/50 rounded-md text-xs font-bold uppercase tracking-wider mb-3">
-            <HelpCircle className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 border border-sky-200/80 dark:border-sky-900/50 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+            <HelpCircle className="w-3.5 h-3.5 text-sky-500" />
             <span>Section 6 • Problèmes &amp; Solutions</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -29,12 +29,12 @@ export default function ImpactSection() {
           {IMPACT_COMPARISONS.map((item, idx) => (
             <div
               key={item.id}
-              className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-blue-300 dark:hover:border-blue-700 transition-all hover:shadow-md"
+              className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-sky-300 dark:hover:border-sky-600 transition-all hover:shadow-md"
             >
               <div className="space-y-5">
                 {/* Badge du Pôle */}
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold uppercase text-[#1E3A8A] dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded-md border border-blue-200/50 dark:border-blue-900/40">
+                  <span className="font-mono text-xs font-bold uppercase text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/60 px-3 py-1 rounded-full border border-sky-200/60">
                     {item.pole}
                   </span>
                   <span className="font-mono text-xs text-slate-400">
@@ -43,7 +43,7 @@ export default function ImpactSection() {
                 </div>
 
                 {/* Le Problème Actuel */}
-                <div className="p-4 rounded-2xl bg-rose-50/60 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/30 space-y-1.5">
+                <div className="p-4 rounded-2xl bg-rose-50/50 dark:bg-rose-950/30 border border-rose-100 dark:border-rose-900/30 space-y-1.5">
                   <div className="flex items-center space-x-1.5 text-xs font-bold text-rose-700 dark:text-rose-400 uppercase tracking-wider">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>Le problème aujourd&apos;hui</span>
@@ -53,10 +53,10 @@ export default function ImpactSection() {
                   </p>
                 </div>
 
-                {/* La Solution Apportée */}
-                <div className="p-4 rounded-2xl bg-blue-50/60 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/30 space-y-1.5">
-                  <div className="flex items-center space-x-1.5 text-xs font-bold text-[#1E3A8A] dark:text-blue-400 uppercase tracking-wider">
-                    <CheckCircle className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
+                {/* La Solution Apportée Candy Blue */}
+                <div className="p-4 rounded-2xl bg-sky-50/60 dark:bg-sky-950/30 border border-sky-100 dark:border-sky-900/30 space-y-1.5">
+                  <div className="flex items-center space-x-1.5 text-xs font-bold text-sky-700 dark:text-sky-400 uppercase tracking-wider">
+                    <CheckCircle className="w-4 h-4 shrink-0 text-sky-500" />
                     <span>Notre solution concrète</span>
                   </div>
                   <p className="text-sm text-slate-800 dark:text-slate-200 leading-relaxed font-medium">
@@ -66,9 +66,9 @@ export default function ImpactSection() {
               </div>
 
               {/* Le Bénéfice Direct */}
-              <div className="pt-5 mt-5 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-                <div className="flex items-center space-x-2 text-xs font-bold text-emerald-800 dark:text-emerald-300">
-                  <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <div className="pt-5 mt-5 border-t border-sky-50 dark:border-slate-800 flex items-center justify-between">
+                <div className="flex items-center space-x-2 text-xs font-bold text-sky-700 dark:text-sky-300">
+                  <TrendingUp className="w-4 h-4 text-sky-500 shrink-0" />
                   <span>Bénéfice direct : {item.gain}</span>
                 </div>
               </div>

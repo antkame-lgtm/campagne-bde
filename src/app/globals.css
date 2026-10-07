@@ -2,23 +2,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bde-blue: #1E3A8A;
-  --color-bde-blue-dark: #172554;
-  --color-bde-amber: #F59E0B;
-  --color-bde-amber-hover: #D97706;
-  --color-bde-sky: #3B82F6;
-  --color-bde-slate: #334155;
-  --color-bde-dark: #0F172A;
-  --color-bde-surface: #F8FAFC;
+  --color-candy-blue: #0284c7;
+  --color-candy-blue-vibrant: #0ea5e9;
+  --color-candy-blue-bright: #38bdf8;
+  --color-candy-blue-dark: #0369a1;
+  --color-candy-blue-soft: #f0f9ff;
+  --color-candy-blue-tint: #e0f2fe;
 }
 
 :root {
-  --primary: #1E3A8A;
-  --primary-dark: #172554;
-  --secondary: #F59E0B;
-  --accent: #3B82F6;
-  --surface: #F8FAFC;
-  --text-main: #334155;
+  --primary: #0284c7;
+  --primary-vibrant: #0ea5e9;
+  --primary-dark: #0369a1;
+  --candy-tint: #e0f2fe;
+  --candy-soft: #f0f9ff;
+  --surface: #ffffff;
+  --text-main: #0f172a;
 }
 
 html {
@@ -32,29 +31,29 @@ h1, h2, h3, .font-display {
 }
 
 body {
-  background-color: #F8FAFC;
-  color: #1E293B;
+  background-color: #ffffff;
+  color: #0f172a;
   overflow-x: hidden;
 }
 
-/* Scrollbar sobre et discrète */
+/* Scrollbar sobre et candy blue */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1F5F9;
+  background: #f8fafc;
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
+  background: #bae6fd;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
+  background: #38bdf8;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #0F172A;
+  background: #0f172a;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #0284c7;
 }
