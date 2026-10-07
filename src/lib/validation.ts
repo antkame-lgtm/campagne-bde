@@ -58,6 +58,10 @@ export function sanitizeText(text: string): string {
 }
 
 export const ALLOWED_CATEGORIES = [
+  "Idée de projet",
+  "Activité souhaitée",
+  "Difficulté rencontrée",
+  "Suggestion BDE",
   "Infrastructures",
   "Pédagogie",
   "Cafétéria",
