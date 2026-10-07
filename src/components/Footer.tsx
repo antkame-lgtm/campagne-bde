@@ -46,7 +46,7 @@ export default function Footer() {
               Navigation
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#vision" className="hover:text-amber-400 transition-colors">Vision &amp; Équipe</a></li>
+              <li><a href="#vision" className="hover:text-amber-400 transition-colors">Vision &amp; Gouvernance</a></li>
               <li><a href="#programme" className="hover:text-amber-400 transition-colors">Programme &amp; Jauges</a></li>
               <li><a href="#voix-etudiante" className="hover:text-amber-400 transition-colors">La Voix Étudiante (Idées &amp; Vote)</a></li>
               <li><a href="#agenda" className="hover:text-amber-400 transition-colors">Agenda Événementiel</a></li>
