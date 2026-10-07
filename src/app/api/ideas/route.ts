@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { INITIAL_IDEAS, StudentIdea } from "../../../data/mockData";
-import crypto from "crypto";
+import { validateIdeaSubmission } from "../../../lib/validation";
+import { hashStudentEmail } from "../../../lib/security";
 
-// Stockage mémoire en fallback si Supabase n'est pas encore configuré
+// Registre serveur en mémoire (fallback immédiat sans dépendre de Supabase distant)
 let serverIdeas: StudentIdea[] = [...INITIAL_IDEAS];
 
 export async function GET() {
@@ -15,39 +16,24 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { title, description, category, author, isAnonymous, email } = body;
+    const validation = validateIdeaSubmission(body);
 
-    // Validation stricte
-    if (!title || title.trim().length < 5) {
+    if (!validation.valid || !validation.sanitized) {
       return NextResponse.json(
-        { success: false, error: "Le titre doit comporter au moins 5 caractères." },
+        { success: false, error: validation.error },
         { status: 400 }
       );
     }
 
-    if (!description || description.trim().length < 10) {
-      return NextResponse.json(
-        { success: false, error: "La description doit comporter au moins 10 caractères." },
-        { status: 400 }
-      );
-    }
-
-    if (!email || !email.includes("@")) {
-      return NextResponse.json(
-        { success: false, error: "Un email universitaire valide est requis pour certifier la soumission." },
-        { status: 400 }
-      );
-    }
-
-    // Anonymisation cryptographique SHA-256 de l'email
-    const emailHash = crypto.createHash("sha256").update(email.trim().toLowerCase()).digest("hex");
+    const { title, description, category, author, email } = validation.sanitized;
+    const emailHash = hashStudentEmail(email);
 
     const newIdea: StudentIdea = {
-      id: `idea-${Date.now()}`,
-      title: title.trim(),
-      description: description.trim(),
-      category: category || "Vie Pratique",
-      author: isAnonymous ? "Anonyme" : (author?.trim() || "Étudiant"),
+      id: `idea-${Date.now()}-${emailHash.slice(0, 6)}`,
+      title,
+      description,
+      category,
+      author,
       votes: 1,
       status: "Pris en compte",
       createdAt: "À l'instant",
@@ -56,15 +42,18 @@ export async function POST(request: Request) {
 
     serverIdeas = [newIdea, ...serverIdeas];
 
-    return NextResponse.json({
-      success: true,
-      message: "Idée enregistrée avec succès !",
-      data: newIdea,
-    });
-  } catch (err) {
     return NextResponse.json(
-      { success: false, error: "Erreur lors du traitement de la requête." },
-      { status: 500 }
+      {
+        success: true,
+        message: "Proposition enregistrée avec succès !",
+        data: newIdea,
+      },
+      { status: 201 }
+    );
+  } catch {
+    return NextResponse.json(
+      { success: false, error: "Format de requête invalide." },
+      { status: 400 }
     );
   }
 }

@@ -1,15 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { MessageSquarePlus, ArrowRight, Clock, Users, Lightbulb, CheckCircle2, Play, Sparkles } from "lucide-react";
+import { MessageSquarePlus, ArrowRight, Clock, Users, Lightbulb, CheckCircle2, Play } from "lucide-react";
 
 interface HeroProps {
   totalIdeas: number;
   totalVotes: number;
-  onOpenStoryModal: () => void;
 }
 
-export default function Hero({ totalIdeas, totalVotes, onOpenStoryModal }: HeroProps) {
+export default function Hero({ totalIdeas, totalVotes }: HeroProps) {
   // Compte à rebours orienté vers la date du scrutin (ex: 23 Octobre 2026 à 08h00)
   const [timeLeft, setTimeLeft] = useState({
     days: 16,
@@ -80,18 +79,10 @@ export default function Hero({ totalIdeas, totalVotes, onOpenStoryModal }: HeroP
 
               <a
                 href="#programme"
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-white text-slate-800 font-bold text-sm border border-slate-300 hover:bg-slate-50 hover:border-slate-400 transition-all shadow-xs"
+                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-100 font-bold text-sm border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 hover:border-slate-400 transition-all shadow-xs"
               >
                 <span>Explorer le Programme</span>
               </a>
-
-              <button
-                onClick={onOpenStoryModal}
-                className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-4 py-3.5 rounded-xl bg-amber-500 text-white font-bold text-sm hover:bg-amber-600 shadow-md shadow-amber-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Story Instagram</span>
-              </button>
             </div>
 
             {/* Statistiques en temps réel */}

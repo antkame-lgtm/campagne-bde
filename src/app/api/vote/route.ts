@@ -1,33 +1,28 @@
 import { NextResponse } from "next/server";
-import crypto from "crypto";
+import { validateVoteSubmission } from "../../../lib/validation";
+import { hashStudentEmail, createVoteKey } from "../../../lib/security";
 
-// Registre mémoire des votes (en attendant les clés Supabase)
-const votesRegistry = new Set<string>(); // Set of "ideaId:emailHash"
+// Registre mémoire anti-fraude : Set de "ideaId:emailHash"
+const votesRegistry = new Set<string>();
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { ideaId, email } = body;
+    const validation = validateVoteSubmission(body);
 
-    if (!ideaId) {
+    if (!validation.valid || !validation.ideaId || !validation.email) {
       return NextResponse.json(
-        { success: false, error: "Identifiant de proposition manquant." },
+        { success: false, error: validation.error },
         { status: 400 }
       );
     }
 
-    if (!email || !email.includes("@")) {
-      return NextResponse.json(
-        { success: false, error: "Email universitaire requis pour certifier votre vote." },
-        { status: 400 }
-      );
-    }
-
-    const emailHash = crypto.createHash("sha256").update(email.trim().toLowerCase()).digest("hex");
-    const voteKey = `${ideaId}:${emailHash}`;
+    const { ideaId, email } = validation;
+    const emailHash = hashStudentEmail(email);
+    const voteKey = createVoteKey(ideaId, emailHash);
 
     if (votesRegistry.has(voteKey)) {
-      // Retrait du vote
+      // Toggle : Retrait du vote
       votesRegistry.delete(voteKey);
       return NextResponse.json({
         success: true,
@@ -35,7 +30,7 @@ export async function POST(request: Request) {
         message: "Vote retiré.",
       });
     } else {
-      // Ajout du vote
+      // Toggle : Enregistrement du vote certifié
       votesRegistry.add(voteKey);
       return NextResponse.json({
         success: true,
@@ -43,10 +38,10 @@ export async function POST(request: Request) {
         message: "Vote comptabilisé avec succès !",
       });
     }
-  } catch (err) {
+  } catch {
     return NextResponse.json(
-      { success: false, error: "Erreur serveur lors de la prise en compte du vote." },
-      { status: 500 }
+      { success: false, error: "Requête invalide." },
+      { status: 400 }
     );
   }
 }

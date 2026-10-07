@@ -11,19 +11,14 @@ import PartnersSection from "../components/PartnersSection";
 import SosSection from "../components/SosSection";
 import VotingGuideSection from "../components/VotingGuideSection";
 import Footer from "../components/Footer";
-import StoryGeneratorModal from "../components/StoryGeneratorModal";
-import CampaignQuizModal from "../components/CampaignQuizModal";
-import LiveToast from "../components/LiveToast";
 import { INITIAL_IDEAS, StudentIdea } from "../data/mockData";
 
 export default function Home() {
   const [ideas, setIdeas] = useState<StudentIdea[]>(INITIAL_IDEAS);
   const [supportCount, setSupportCount] = useState(420);
-  const [isStoryModalOpen, setIsStoryModalOpen] = useState(false);
-  const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
-  // Gestion du Dark Mode
+  // Gestion du Dark Mode avec persistance classe html
   useEffect(() => {
     if (isDark) {
       document.documentElement.classList.add("dark");
@@ -32,12 +27,12 @@ export default function Home() {
     }
   }, [isDark]);
 
-  // Gestion des idées citoyennes
+  // Ajout d'une idée étudiante après validation
   const handleAddIdea = (newIdea: StudentIdea) => {
     setIdeas((prev) => [newIdea, ...prev]);
   };
 
-  // Gestion des Upvotes (+1 / -1)
+  // Upvote citoyen (+1 / -1)
   const handleVote = (ideaId: string) => {
     setIdeas((prev) =>
       prev.map((idea) => {
@@ -54,7 +49,7 @@ export default function Home() {
     );
   };
 
-  // Ralliement au comité de soutien
+  // Ralliement au comité de soutien officiel
   const handleJoinSupport = () => {
     setSupportCount((prev) => prev + 1);
   };
@@ -63,64 +58,45 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
-      {/* 1. Barre de navigation sticky avec Dark Mode & Quiz */}
+      {/* 1. Module 0 : Barre de navigation officielle */}
       <Navbar
-        onOpenStoryModal={() => setIsStoryModalOpen(true)}
-        onOpenQuizModal={() => setIsQuizModalOpen(true)}
         isDark={isDark}
         onToggleDark={() => setIsDark(!isDark)}
       />
 
-      {/* 2. Section Hero (Compte à rebours, portrait, stats direct) */}
+      {/* 2. Module 1 : Accueil, Candidats, Compte à rebours & Manifeste */}
       <Hero
         totalIdeas={ideas.length}
         totalVotes={totalVotes}
-        onOpenStoryModal={() => setIsStoryModalOpen(true)}
       />
 
-      {/* 3. Espace Vision & Équipe pressentie */}
+      {/* 3. Module 2 : Notre Vision & Équipe Dirigeante (Organigramme) */}
       <VisionSection />
 
-      {/* 4. Le Programme Interactif (4 axes & jauges de faisabilité) */}
+      {/* 4. Module 3 : Programme & Engagements (4 axes & jauges de faisabilité) */}
       <ProgramSection />
 
-      {/* 5. La Voix Étudiante (Boîte à idées + Upvotes) */}
+      {/* 5. Module 4 : La Voix Étudiante (Boîte à idées citoyenne & votes) */}
       <StudentVoiceSection
         ideas={ideas}
         onAddIdea={handleAddIdea}
         onVote={handleVote}
       />
 
-      {/* 6. Agenda & Calendrier des rendez-vous */}
+      {/* 6. Module 5 : Agenda & Rendez-vous de campagne (Google Cal / ICS) */}
       <AgendaSection />
 
-      {/* 7. Partenariats & Bons Plans */}
+      {/* 7. Module 6 : Bons Plans & Partenariats Étudiants */}
       <PartnersSection />
 
-      {/* 8. Espace SOS Étudiant (Aide, tutorat, annales) */}
+      {/* 8. Module 7 : Espace SOS Étudiant (Assistance confidentielle, tutorat, annales) */}
       <SosSection />
 
-      {/* 9. Guide du Vote, FAQ & Comité de Soutien */}
+      {/* 9. Module 8 : Guide du Vote, Modalités de Scrutin & FAQ officielle */}
       <VotingGuideSection onJoinSupport={handleJoinSupport} />
 
-      {/* 10. Pied de page & mentions */}
+      {/* 10. Pied de page institutionnel & mentions légales */}
       <Footer />
-
-      {/* Modal Levier Viral : Générateur de Story Instagram/TikTok */}
-      <StoryGeneratorModal
-        isOpen={isStoryModalOpen}
-        onClose={() => setIsStoryModalOpen(false)}
-      />
-
-      {/* Modal Quiz : Simulateur d'Engagements sur-mesure (30s) */}
-      <CampaignQuizModal
-        isOpen={isQuizModalOpen}
-        onClose={() => setIsQuizModalOpen(false)}
-        onOpenStory={() => setIsStoryModalOpen(true)}
-      />
-
-      {/* Toast d'Activité Sociale en Direct (Preuve sociale) */}
-      <LiveToast />
     </main>
   );
 }
