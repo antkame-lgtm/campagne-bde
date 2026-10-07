@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import AboutSection from "../components/AboutSection";
@@ -16,6 +16,33 @@ import { INITIAL_IDEAS, StudentIdea } from "../data/mockData";
 export default function Home() {
   const [ideas, setIdeas] = useState<StudentIdea[]>(INITIAL_IDEAS);
   const [, setSupportCount] = useState(420);
+  const [isDark, setIsDark] = useState(false);
+
+  // Initialisation et persistance du mode sombre
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setIsDark(false);
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  const handleToggleDark = () => {
+    setIsDark((prev) => {
+      const next = !prev;
+      if (next) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+      return next;
+    });
+  };
 
   // Ajout d'une nouvelle proposition étudiante
   const handleAddIdea = (newIdea: StudentIdea) => {
@@ -45,9 +72,12 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-white text-sky-900">
-      {/* 0. Barre de Navigation Officielle */}
-      <Navbar />
+    <main className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-sky-900 dark:text-sky-100 transition-colors duration-200">
+      {/* 0. Barre de Navigation Officielle avec Toggle Dark Mode */}
+      <Navbar
+        isDark={isDark}
+        onToggleDark={handleToggleDark}
+      />
 
       {/* 1. Accueil — « Bienvenue dans notre vision » */}
       <Hero />

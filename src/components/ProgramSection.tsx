@@ -19,19 +19,19 @@ export default function ProgramSection() {
   const CurrentIcon = poleIcons[currentPole.id] || Layers;
 
   return (
-    <section id="programme" className="py-16 sm:py-24 bg-white border-b border-sky-200 transition-colors duration-200">
+    <section id="programme" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-200 dark:border-sky-900/60 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Titre & Note Méthodologique */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 text-sky-700 border border-sky-200 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
             <Layers className="w-3.5 h-3.5 text-sky-500" />
             <span>Section 4 • Notre programme</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 dark:text-sky-400 tracking-tight">
             5 grands pôles d&apos;action pour transformer notre quotidien
           </h2>
-          <p className="mt-3 text-base text-sky-800 font-medium">
+          <p className="mt-3 text-base text-sky-800 dark:text-sky-200 font-medium">
             Un programme structuré, réaliste et directement inspiré de vos besoins réels. 
             Chaque mesure est planifiée avec une évaluation technique et budgétaire rigoureuse.
           </p>
@@ -49,14 +49,14 @@ export default function ProgramSection() {
                 className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all cursor-pointer ${
                   isSelected
                     ? "bg-sky-500 text-white border-sky-600 shadow-md shadow-sky-500/25 scale-[1.02]"
-                    : "bg-white text-sky-700 border-sky-200 hover:border-sky-400 hover:bg-sky-50"
+                    : "bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 hover:bg-sky-50 dark:hover:bg-slate-800"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className={`font-mono text-xs font-black uppercase ${isSelected ? "text-sky-100" : "text-sky-500"}`}>
+                  <span className={`font-mono text-xs font-black uppercase ${isSelected ? "text-sky-100" : "text-sky-500 dark:text-sky-400"}`}>
                     PÔLE {pole.number}
                   </span>
-                  <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-sky-500"}`} />
+                  <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-sky-500 dark:text-sky-400"}`} />
                 </div>
                 <div className="font-bold text-xs sm:text-sm leading-snug line-clamp-2">
                   {pole.title}
@@ -67,75 +67,75 @@ export default function ProgramSection() {
         </div>
 
         {/* Fiche Détaillée du Pôle Sélectionné */}
-        <div className="bg-white rounded-3xl border border-sky-200 p-6 sm:p-10 shadow-xl shadow-sky-500/5 transition-colors">
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-sky-200 dark:border-sky-800 p-6 sm:p-10 shadow-xl shadow-sky-500/5 transition-colors">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Colonne Gauche : Synthèse & Jauges d'Audit */}
             <div className="lg:col-span-5 space-y-6">
               <div>
-                <div className="flex items-center space-x-2 text-xs font-black text-sky-500 tracking-wider uppercase mb-1">
+                <div className="flex items-center space-x-2 text-xs font-black text-sky-500 dark:text-sky-400 tracking-wider uppercase mb-1">
                   <span>Pôle {currentPole.number}</span>
                   <span>•</span>
                   <span>Mandat 2026-2027</span>
                 </div>
                 <div className="flex items-center space-x-3 mt-1 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 text-sky-500 flex items-center justify-center shrink-0 border border-sky-200">
+                  <div className="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-500 dark:text-sky-400 flex items-center justify-center shrink-0 border border-sky-200 dark:border-sky-800">
                     <CurrentIcon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-sky-700">
+                  <h3 className="text-2xl sm:text-3xl font-black text-sky-700 dark:text-sky-300">
                     {currentPole.title}
                   </h3>
                 </div>
-                <p className="text-sm sm:text-base text-sky-800 font-medium leading-relaxed">
+                <p className="text-sm sm:text-base text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
                   {currentPole.summary}
                 </p>
               </div>
 
               {/* Fiche d'Engagement Chiffrée */}
               <div className="grid grid-cols-2 gap-3">
-                <div className="p-3.5 bg-white rounded-2xl border border-sky-200 shadow-xs">
-                  <div className="flex items-center space-x-1.5 text-xs text-sky-600 mb-1">
+                <div className="p-3.5 bg-white dark:bg-slate-950 rounded-2xl border border-sky-200 dark:border-sky-800 shadow-xs">
+                  <div className="flex items-center space-x-1.5 text-xs text-sky-600 dark:text-sky-400 mb-1">
                     <Coins className="w-3.5 h-3.5 text-sky-500" />
                     <span>Budget Estimé</span>
                   </div>
-                  <div className="text-sm font-bold text-sky-700 font-mono">
+                  <div className="text-sm font-bold text-sky-700 dark:text-sky-300 font-mono">
                     {currentPole.budget}
                   </div>
                 </div>
 
-                <div className="p-3.5 bg-white rounded-2xl border border-sky-200 shadow-xs">
-                  <div className="flex items-center space-x-1.5 text-xs text-sky-600 mb-1">
+                <div className="p-3.5 bg-white dark:bg-slate-950 rounded-2xl border border-sky-200 dark:border-sky-800 shadow-xs">
+                  <div className="flex items-center space-x-1.5 text-xs text-sky-600 dark:text-sky-400 mb-1">
                     <Calendar className="w-3.5 h-3.5 text-sky-500" />
                     <span>Calendrier</span>
                   </div>
-                  <div className="text-sm font-bold text-sky-700 font-mono">
+                  <div className="text-sm font-bold text-sky-700 dark:text-sky-300 font-mono">
                     {currentPole.deadline}
                   </div>
                 </div>
               </div>
 
               {/* Jauges d'audit de faisabilité */}
-              <div className="bg-sky-50/50 p-5 rounded-2xl border border-sky-200 space-y-4">
-                <div className="flex items-center justify-between text-xs font-bold text-sky-700 uppercase tracking-wider mb-2">
+              <div className="bg-sky-50/50 dark:bg-slate-950 p-5 rounded-2xl border border-sky-200 dark:border-sky-800 space-y-4">
+                <div className="flex items-center justify-between text-xs font-bold text-sky-700 dark:text-sky-300 uppercase tracking-wider mb-2">
                   <div className="flex items-center space-x-1.5">
                     <Gauge className="w-4 h-4 text-sky-500" />
                     <span>Audit de Faisabilité</span>
                   </div>
-                  <span className="text-sky-700 bg-sky-100 px-2.5 py-0.5 rounded-full border border-sky-300 font-mono text-[10px] font-bold">
+                  <span className="text-sky-700 dark:text-sky-300 bg-sky-100 dark:bg-sky-950 px-2.5 py-0.5 rounded-full border border-sky-300 dark:border-sky-800 font-mono text-[10px] font-bold">
                     VALIDÉ
                   </span>
                 </div>
 
                 {/* Faisabilité Technique */}
                 <div>
-                  <div className="flex justify-between text-xs font-semibold text-sky-700 mb-1.5">
+                  <div className="flex justify-between text-xs font-semibold text-sky-700 dark:text-sky-300 mb-1.5">
                     <span className="flex items-center space-x-1">
                       <Wrench className="w-3.5 h-3.5 text-sky-500" />
                       <span>Faisabilité Technique &amp; Logistique</span>
                     </span>
-                    <span className="font-bold text-sky-600 font-mono">{currentPole.feasibilityTechnical}%</span>
+                    <span className="font-bold text-sky-600 dark:text-sky-400 font-mono">{currentPole.feasibilityTechnical}%</span>
                   </div>
-                  <div className="w-full h-2.5 bg-white rounded-full overflow-hidden border border-sky-200">
+                  <div className="w-full h-2.5 bg-white dark:bg-slate-800 rounded-full overflow-hidden border border-sky-200 dark:border-sky-800">
                     <div
                       className="h-full bg-sky-500 rounded-full transition-all duration-500"
                       style={{ width: `${currentPole.feasibilityTechnical}%` }}
@@ -145,14 +145,14 @@ export default function ProgramSection() {
 
                 {/* Faisabilité Financière */}
                 <div>
-                  <div className="flex justify-between text-xs font-semibold text-sky-700 mb-1.5">
+                  <div className="flex justify-between text-xs font-semibold text-sky-700 dark:text-sky-300 mb-1.5">
                     <span className="flex items-center space-x-1">
                       <DollarSign className="w-3.5 h-3.5 text-sky-500" />
                       <span>Faisabilité Budgétaire &amp; Trésorerie</span>
                     </span>
-                    <span className="font-bold text-sky-600 font-mono">{currentPole.feasibilityFinancial}%</span>
+                    <span className="font-bold text-sky-600 dark:text-sky-400 font-mono">{currentPole.feasibilityFinancial}%</span>
                   </div>
-                  <div className="w-full h-2.5 bg-white rounded-full overflow-hidden border border-sky-200">
+                  <div className="w-full h-2.5 bg-white dark:bg-slate-800 rounded-full overflow-hidden border border-sky-200 dark:border-sky-800">
                     <div
                       className="h-full bg-sky-400 rounded-full transition-all duration-500"
                       style={{ width: `${currentPole.feasibilityFinancial}%` }}
@@ -165,11 +165,11 @@ export default function ProgramSection() {
 
             {/* Colonne Droite : Liste des Propositions Précises du Pôle */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-sky-200">
-                <span className="text-xs font-black uppercase tracking-wider text-sky-600">
+              <div className="flex items-center justify-between pb-2 border-b border-sky-200 dark:border-sky-800">
+                <span className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-sky-400">
                   Mesures d&apos;application immédiate
                 </span>
-                <span className="text-xs font-bold text-sky-700">
+                <span className="text-xs font-bold text-sky-700 dark:text-sky-300">
                   {currentPole.proposals.length} engagements clés
                 </span>
               </div>
@@ -178,16 +178,16 @@ export default function ProgramSection() {
                 {currentPole.proposals.map((prop, idx) => (
                   <div
                     key={idx}
-                    className="p-4 sm:p-5 rounded-2xl bg-white border border-sky-200 flex items-start space-x-3.5 hover:border-sky-400 transition-colors shadow-xs"
+                    className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-950 border border-sky-200 dark:border-sky-800 flex items-start space-x-3.5 hover:border-sky-400 dark:hover:border-sky-600 transition-colors shadow-xs"
                   >
-                    <div className="w-7 h-7 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold border border-sky-200">
+                    <div className="w-7 h-7 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold border border-sky-200 dark:border-sky-800">
                       0{idx + 1}
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-sky-800 leading-snug">
+                      <div className="text-sm font-bold text-sky-800 dark:text-sky-200 leading-snug">
                         {prop}
                       </div>
-                      <div className="mt-1 flex items-center space-x-2 text-[11px] text-sky-600 font-bold">
+                      <div className="mt-1 flex items-center space-x-2 text-[11px] text-sky-600 dark:text-sky-400 font-bold">
                         <CheckCircle2 className="w-3.5 h-3.5 text-sky-500" />
                         <span>Inscrit au plan d&apos;action du mandat</span>
                       </div>
@@ -197,8 +197,8 @@ export default function ProgramSection() {
               </div>
 
               {/* Encadré d'engagement réciproque */}
-              <div className="p-4 rounded-2xl bg-sky-50 border border-sky-200">
-                <p className="text-xs text-sky-800 leading-relaxed font-semibold">
+              <div className="p-4 rounded-2xl bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800">
+                <p className="text-xs text-sky-800 dark:text-sky-200 leading-relaxed font-semibold">
                   <strong>Engagement de suivi :</strong> Un état d&apos;avancement mensuel pour le pôle {currentPole.title} sera publié en direct pour permettre à chaque étudiant de vérifier la tenue des engagements.
                 </p>
               </div>

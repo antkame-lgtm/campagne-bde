@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-candy-blue: #0284c7;
   --color-candy-blue-vibrant: #0ea5e9;
@@ -27,24 +29,41 @@ html {
   background-color: #ffffff;
 }
 
+html.dark {
+  background-color: #030712;
+}
+
 h1, h2, h3, .font-display {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
   letter-spacing: -0.025em;
   color: #0284c7;
 }
 
+.dark h1, .dark h2, .dark h3, .dark .font-display {
+  color: #38bdf8;
+}
+
 body {
   background-color: #ffffff;
   color: #0369a1;
   overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Scrollbar Candy Blue & Blanc */
+.dark body {
+  background-color: #030712;
+  color: #e0f2fe;
+}
+
+/* Scrollbar Candy Blue */
 ::-webkit-scrollbar {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #ffffff;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #030712;
 }
 ::-webkit-scrollbar-thumb {
   background: #7dd3fc;
@@ -52,4 +71,10 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #0284c7;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #0284c7;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
 }
