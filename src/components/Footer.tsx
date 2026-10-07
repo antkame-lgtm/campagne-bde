@@ -6,7 +6,7 @@ import { CANDIDATE_INFO } from "../data/mockData";
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-slate-950 text-slate-600 dark:text-slate-300 border-t border-sky-100 dark:border-slate-800 pt-16 pb-12 transition-colors">
+    <footer className="bg-white text-sky-800 border-t border-sky-200 pt-16 pb-12 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           
@@ -17,60 +17,60 @@ export default function Footer() {
                 <Vote className="w-5 h-5 text-white" />
               </div>
               <div>
-                <span className="font-extrabold text-base text-slate-900 dark:text-white block leading-tight">
-                  {CANDIDATE_INFO.name} <span className="text-sky-600">• BDE 2026</span>
+                <span className="font-extrabold text-base text-sky-700 block leading-tight">
+                  {CANDIDATE_INFO.name} <span className="text-sky-500">• BDE 2026</span>
                 </span>
-                <span className="text-[11px] font-bold text-sky-500 dark:text-sky-400 tracking-wider uppercase block">
+                <span className="text-[11px] font-bold text-sky-500 tracking-wider uppercase block">
                   {CANDIDATE_INFO.slogan}
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <p className="text-xs text-sky-800 font-medium leading-relaxed">
               Une communauté étudiante plus dynamique, plus ambitieuse et plus proche de ses étudiants. 
               Pour un mandat transparent, solidaire et fédérateur.
             </p>
 
-            <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-sky-50 dark:bg-slate-900 border border-sky-200/80 dark:border-slate-800 text-xs">
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-200 text-xs">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
               </span>
-              <span className="text-sky-800 dark:text-sky-200 font-semibold text-[11px]">Plateforme Officielle de Campagne</span>
+              <span className="text-sky-700 font-bold text-[11px]">Plateforme Officielle de Campagne</span>
             </div>
           </div>
 
           {/* Colonne 2 : Liens Rapides vers les 7 Sections */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-4">
               Programme &amp; Sections
             </h4>
             <ul className="space-y-2 text-xs">
-              <li><a href="#qui-sommes-nous" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">1. Qui sommes-nous ?</a></li>
-              <li><a href="#vision" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">2. Notre vision</a></li>
-              <li><a href="#programme" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">3. Notre programme (5 pôles)</a></li>
-              <li><a href="#calendrier" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">4. Notre calendrier</a></li>
-              <li><a href="#impact" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">5. Ça change quoi ?</a></li>
-              <li><a href="#avis" className="hover:text-sky-600 dark:hover:text-sky-400 transition-colors">6. Donnez-nous votre avis</a></li>
+              <li><a href="#qui-sommes-nous" className="hover:text-sky-500 font-medium text-sky-700 transition-colors">1. Qui sommes-nous ?</a></li>
+              <li><a href="#vision" className="hover:text-sky-500 font-medium text-sky-700 transition-colors">2. Notre vision</a></li>
+              <li><a href="#programme" className="hover:text-sky-500 font-medium text-sky-700 transition-colors">3. Notre programme (5 pôles)</a></li>
+              <li><a href="#calendrier" className="hover:text-sky-500 font-medium text-sky-700 transition-colors">4. Notre calendrier</a></li>
+              <li><a href="#impact" className="hover:text-sky-500 font-medium text-sky-700 transition-colors">5. Ça change quoi ?</a></li>
+              <li><a href="#avis" className="hover:text-sky-500 font-medium text-sky-700 transition-colors">6. Donnez-nous votre avis</a></li>
             </ul>
           </div>
 
           {/* Colonne 3 : Contacts & Permanences */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-4">
               Permanences &amp; Écoute
             </h4>
-            <ul className="space-y-2.5 text-xs text-slate-500 dark:text-slate-400">
+            <ul className="space-y-2.5 text-xs text-sky-800">
               <li>
-                <strong className="text-slate-800 dark:text-slate-200 block">QG de Campagne :</strong>
+                <strong className="text-sky-700 block">QG de Campagne :</strong>
                 Hall d&apos;accueil et foyer étudiant
               </li>
               <li>
-                <strong className="text-slate-800 dark:text-slate-200 block">Équipe de Salimata :</strong>
+                <strong className="text-sky-700 block">Équipe de Salimata :</strong>
                 Permanence d&apos;écoute et de discussion libre
               </li>
               <li>
-                <strong className="text-slate-800 dark:text-slate-200 block">Scrutin officiel :</strong>
+                <strong className="text-sky-700 block">Scrutin officiel :</strong>
                 Vendredi 23 octobre 2026 de 08h00 à 18h00
               </li>
             </ul>
@@ -78,7 +78,7 @@ export default function Footer() {
 
           {/* Colonne 4 : Réseaux & RGPD */}
           <div>
-            <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-4">
+            <h4 className="text-xs font-bold text-sky-700 uppercase tracking-wider mb-4">
               Rejoindre la Dynamique
             </h4>
             <div className="flex space-x-3 mb-6">
@@ -94,12 +94,12 @@ export default function Footer() {
               </a>
             </div>
 
-            <div className="p-3.5 rounded-2xl bg-sky-50/50 dark:bg-slate-900 border border-sky-100 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
-              <div className="flex items-center space-x-1.5 text-sky-700 dark:text-sky-300 font-bold">
+            <div className="p-3.5 rounded-2xl bg-sky-50 border border-sky-200 text-[11px] text-sky-800 space-y-1">
+              <div className="flex items-center space-x-1.5 text-sky-700 font-bold">
                 <Shield className="w-3.5 h-3.5 text-sky-500" />
                 <span>Protection des Données (RGPD)</span>
               </div>
-              <p>
+              <p className="font-medium">
                 Vos avis et votes sont certifiés par email institutionnel et ne font l&apos;objet d&apos;aucun traçage commercial.
               </p>
             </div>
@@ -108,16 +108,16 @@ export default function Footer() {
         </div>
 
         {/* Bas de page / Mentions */}
-        <div className="pt-8 border-t border-sky-100 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-          <div>
+        <div className="pt-8 border-t border-sky-100 flex flex-col sm:flex-row items-center justify-between text-xs text-sky-600 gap-4">
+          <div className="font-medium">
             © 2026 Campagne {CANDIDATE_INFO.name} • Tous droits réservés. Élection du Bureau des Étudiants.
           </div>
           <div className="flex items-center space-x-4">
-            <a href="#" className="hover:text-sky-600 dark:hover:text-slate-300 transition-colors">Mentions Légales</a>
+            <a href="#" className="hover:text-sky-700 transition-colors font-medium">Mentions Légales</a>
             <span>•</span>
-            <a href="#" className="hover:text-sky-600 dark:hover:text-slate-300 transition-colors">Charte Électorale</a>
+            <a href="#" className="hover:text-sky-700 transition-colors font-medium">Charte Électorale</a>
             <span>•</span>
-            <span className="flex items-center space-x-1 text-slate-400">
+            <span className="flex items-center space-x-1 text-sky-600 font-medium">
               <span>Fait avec</span>
               <Heart className="w-3 h-3 text-sky-500 fill-sky-500" />
               <span>pour tous les étudiants</span>

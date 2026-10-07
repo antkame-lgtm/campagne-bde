@@ -36,19 +36,19 @@ export default function VisionSection() {
   ];
 
   return (
-    <section id="vision" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-100 dark:border-slate-800 transition-colors duration-200">
+    <section id="vision" className="py-16 sm:py-24 bg-white border-b border-sky-200 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête de section */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200/80 dark:border-sky-900/40">
-            <Compass className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 text-sky-700 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200">
+            <Compass className="w-3.5 h-3.5 text-sky-500" />
             <span>Section 3 • Notre vision</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 tracking-tight">
             Ce que nous voulons que la vie étudiante devienne
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-sky-800 font-medium leading-relaxed">
             Notre vision repose sur une conviction simple : votre passage dans cette école doit être bien plus 
             qu&apos;une série de cours. Il doit être une expérience humaine, solidaire et enrichissante qui vous donne 
             toutes les clés pour réussir.
@@ -62,28 +62,28 @@ export default function VisionSection() {
             return (
               <div
                 key={pillar.num}
-                className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-slate-800 flex flex-col justify-between hover:border-sky-300 dark:hover:border-sky-600 transition-all shadow-xs hover:shadow-md"
+                className="p-6 rounded-3xl bg-white border border-sky-200 flex flex-col justify-between hover:border-sky-400 transition-all shadow-xs hover:shadow-md"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-2xl font-black text-sky-500 dark:text-sky-400">
+                    <span className="font-mono text-2xl font-black text-sky-500">
                       {pillar.num}
                     </span>
-                    <div className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950/60 text-sky-600 dark:text-sky-300 flex items-center justify-center border border-sky-100/80">
+                    <div className="w-9 h-9 rounded-xl bg-sky-50 text-sky-500 flex items-center justify-center border border-sky-200">
                       <Icon className="w-4 h-4" />
                     </div>
                   </div>
 
-                  <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+                  <h3 className="text-base font-bold text-sky-700 mb-2 leading-snug">
                     {pillar.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-sky-800 font-medium leading-relaxed mb-4">
                     {pillar.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-sky-100/80 dark:border-slate-800 text-[11px] font-bold text-sky-600 dark:text-sky-300 flex items-center space-x-1.5">
+                <div className="pt-3 border-t border-sky-100 text-[11px] font-bold text-sky-600 flex items-center space-x-1.5">
                   <Sparkles className="w-3.5 h-3.5 shrink-0 text-sky-500" />
                   <span>{pillar.highlight}</span>
                 </div>
