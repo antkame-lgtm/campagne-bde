@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import VisionSection from "../components/VisionSection";
@@ -12,12 +12,25 @@ import SosSection from "../components/SosSection";
 import VotingGuideSection from "../components/VotingGuideSection";
 import Footer from "../components/Footer";
 import StoryGeneratorModal from "../components/StoryGeneratorModal";
+import CampaignQuizModal from "../components/CampaignQuizModal";
+import LiveToast from "../components/LiveToast";
 import { INITIAL_IDEAS, StudentIdea } from "../data/mockData";
 
 export default function Home() {
   const [ideas, setIdeas] = useState<StudentIdea[]>(INITIAL_IDEAS);
   const [supportCount, setSupportCount] = useState(420);
   const [isStoryModalOpen, setIsStoryModalOpen] = useState(false);
+  const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+
+  // Gestion du Dark Mode
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [isDark]);
 
   // Gestion des idées citoyennes
   const handleAddIdea = (newIdea: StudentIdea) => {
@@ -49,9 +62,14 @@ export default function Home() {
   const totalVotes = ideas.reduce((acc, curr) => acc + curr.votes, 0);
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8FAFC]">
-      {/* 1. Barre de navigation sticky */}
-      <Navbar onOpenStoryModal={() => setIsStoryModalOpen(true)} />
+    <main className="min-h-screen flex flex-col bg-[#F8FAFC] dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
+      {/* 1. Barre de navigation sticky avec Dark Mode & Quiz */}
+      <Navbar
+        onOpenStoryModal={() => setIsStoryModalOpen(true)}
+        onOpenQuizModal={() => setIsQuizModalOpen(true)}
+        isDark={isDark}
+        onToggleDark={() => setIsDark(!isDark)}
+      />
 
       {/* 2. Section Hero (Compte à rebours, portrait, stats direct) */}
       <Hero
@@ -93,6 +111,16 @@ export default function Home() {
         isOpen={isStoryModalOpen}
         onClose={() => setIsStoryModalOpen(false)}
       />
+
+      {/* Modal Quiz : Simulateur d'Engagements sur-mesure (30s) */}
+      <CampaignQuizModal
+        isOpen={isQuizModalOpen}
+        onClose={() => setIsQuizModalOpen(false)}
+        onOpenStory={() => setIsStoryModalOpen(true)}
+      />
+
+      {/* Toast d'Activité Sociale en Direct (Preuve sociale) */}
+      <LiveToast />
     </main>
   );
 }
