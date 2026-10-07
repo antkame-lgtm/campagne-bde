@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Clock, Users, Lightbulb, CheckCircle2, ShieldCheck, FileText } from "lucide-react";
+import DynamicBackground from "./DynamicBackground";
 
 interface HeroProps {
   totalIdeas: number;
@@ -39,8 +40,9 @@ export default function Hero({ totalIdeas, totalVotes }: HeroProps) {
   }, []);
 
   return (
-    <section className="relative bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 pt-10 pb-16 sm:pt-16 sm:pb-24 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 pt-10 pb-16 sm:pt-16 sm:pb-24 transition-colors duration-200">
+      <DynamicBackground />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Bandeau Supérieur : Statut Institutionnel */}
         <div className="flex flex-wrap items-center justify-between gap-3 pb-8 mb-8 border-b border-slate-100 dark:border-slate-800/80 text-xs text-slate-500 dark:text-slate-400">
