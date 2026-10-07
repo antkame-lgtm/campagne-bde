@@ -1,84 +1,96 @@
 "use client";
 
 import React from "react";
-import { TEAM_MEMBERS, PILLARS } from "../data/mockData";
-import { CheckCircle2, HeartHandshake, Shield, Sparkles, Target, Users } from "lucide-react";
+import { TEAM_MEMBERS } from "../data/mockData";
+import { Users, GraduationCap, Award } from "lucide-react";
 
 export default function VisionSection() {
   const values = [
     {
-      title: "Écoute",
-      desc: "Chaque proposition et remarque étudiante est prise en considération sans filtre.",
-      icon: HeartHandshake,
-      color: "text-blue-600 bg-blue-50 border-blue-200"
+      num: "01",
+      title: "Écoute Active & Démocratie Directe",
+      desc: "Zéro décision unilatérale. Toute proposition recueillant le soutien de la communauté étudiante est inscrite à l'ordre du jour du bureau.",
+      commitment: "Permanence bi-hebdomadaire ouverte"
     },
     {
-      title: "Rigueur",
-      desc: "Gestion budgétaire transparente avec publication semestrielle des comptes.",
-      icon: Shield,
-      color: "text-amber-600 bg-amber-50 border-amber-200"
+      num: "02",
+      title: "Rigueur & Transparence Budgétaire",
+      desc: "Gestion exemplaire des fonds associatifs. Comptes publiés en ligne, conventions partenaires transparentes et zéro dépense opaque.",
+      commitment: "Rapport financier public trimestriel"
     },
     {
-      title: "Solidarité",
-      desc: "Aide d'urgence, tutorat et lutte contre toute forme d'isolement ou précarité.",
-      icon: Sparkles,
-      color: "text-emerald-600 bg-emerald-50 border-emerald-200"
+      num: "03",
+      title: "Solidarité Concrète & Anti-Précarité",
+      desc: "Lutte active contre l'isolement, soutien psychologique d'urgence, tutorat méthodologique et événements accessibles à tous les budgets.",
+      commitment: "Fonds d'aide d'urgence & tutorat gratuit"
     },
     {
-      title: "Ambition",
-      desc: "Faire rayonner notre école auprès des entreprises et du réseau des diplômés.",
-      icon: Target,
-      color: "text-indigo-600 bg-indigo-50 border-indigo-200"
+      num: "04",
+      title: "Rayonnement & Insertion Professionnelle",
+      desc: "Valorisation de l'école auprès des recruteurs, partenariats diplômés (alumni) renforcés et événements carrière tout au long de l'année.",
+      commitment: "Forum entreprises & réseau alumni actif"
     }
   ];
 
   return (
-    <section id="vision" className="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <section id="vision" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête de section */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 text-[#1E3A8A] rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="max-w-3xl mb-16">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 rounded-md text-xs font-bold uppercase tracking-wider mb-3 border border-blue-200/60 dark:border-blue-900/40">
             <Users className="w-3.5 h-3.5" />
-            <span>Vision & Équipe Pressentie</span>
+            <span>Notre Vision &amp; Gouvernance</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Une équipe engagée, représentative et transparente
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Quatre principes directeurs, un mandat d&apos;actions mesurables.
           </h2>
-          <p className="mt-4 text-base sm:text-lg text-slate-600">
-            Notre liste rassemble des étudiants de différentes filières, unis par une volonté commune :
-            redonner du pouvoir d&apos;action et de la convivialité à notre vie de campus.
+          <p className="mt-4 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+            Un BDE n&apos;est pas une simple machine à soirées. C&apos;est l&apos;institution qui défend vos intérêts 
+            académiques, votre pouvoir d&apos;achat et la vitalité quotidienne de notre campus.
           </p>
         </div>
 
-        {/* 4 Valeurs Cardinales */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
-          {values.map((val, idx) => {
-            const Icon = val.icon;
-            return (
-              <div
-                key={idx}
-                className="p-6 rounded-2xl bg-[#F8FAFC] border border-slate-200 hover:border-slate-300 hover:shadow-md transition-all group"
-              >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center border mb-4 ${val.color} group-hover:scale-110 transition-transform`}>
-                  <Icon className="w-6 h-6" />
+        {/* 4 Piliers Typographiques (Design Éditorial) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+          {values.map((val) => (
+            <div
+              key={val.num}
+              className="p-6 rounded-2xl bg-[#F8FAFC] dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex flex-col justify-between hover:border-slate-300 dark:hover:border-slate-700 transition-all"
+            >
+              <div>
+                <div className="font-mono text-2xl font-black text-[#1E3A8A] dark:text-blue-400 mb-3">
+                  {val.num}
                 </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{val.title}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">{val.desc}</p>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2 leading-snug">
+                  {val.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                  {val.desc}
+                </p>
               </div>
-            );
-          })}
+
+              <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] font-semibold text-[#1E3A8A] dark:text-blue-300 flex items-center space-x-1.5">
+                <Award className="w-3.5 h-3.5 text-[#F59E0B]" />
+                <span>{val.commitment}</span>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Trombinoscope de l'Équipe */}
+        {/* Organigramme de l'Équipe Dirigeante */}
         <div>
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4 pb-4 border-b border-slate-100 dark:border-slate-800">
             <div>
-              <h3 className="text-2xl font-bold text-slate-900">Le Bureau Pressenti</h3>
-              <p className="text-sm text-slate-500">Des profils complémentaires au service de vos projets quotidiens.</p>
+              <h3 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+                Le Bureau Exécutif Pressenti
+              </h3>
+              <p className="text-sm text-slate-500 dark:text-slate-400">
+                Une équipe pluridisciplinaire unie pour un mandat de 12 mois.
+              </p>
             </div>
-            <span className="inline-flex items-center text-xs font-semibold px-3 py-1.5 bg-slate-100 text-slate-700 rounded-lg w-fit">
-              6 Pôles Opérationnels
+            <span className="inline-flex items-center text-xs font-bold px-3 py-1.5 bg-blue-50 dark:bg-blue-950/60 text-[#1E3A8A] dark:text-blue-300 rounded-lg border border-blue-200 dark:border-blue-900/50 w-fit">
+              6 Pôles d&apos;Engagement
             </span>
           </div>
 
@@ -86,26 +98,37 @@ export default function VisionSection() {
             {TEAM_MEMBERS.map((member) => (
               <div
                 key={member.id}
-                className="bg-[#F8FAFC] rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg transition-all group flex flex-col"
+                className="bg-[#F8FAFC] dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition-all flex flex-col"
               >
-                <div className="relative aspect-4/3 overflow-hidden bg-slate-200">
+                <div className="relative aspect-4/3 overflow-hidden bg-slate-200 dark:bg-slate-800">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
                   />
                   <div className="absolute top-3 left-3">
-                    <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm text-slate-900 text-xs font-bold rounded-lg shadow-xs">
+                    <span className="px-2.5 py-1 bg-slate-900/90 text-white text-[11px] font-bold rounded-md shadow-xs">
                       {member.role}
                     </span>
                   </div>
                 </div>
 
-                <div className="p-5 flex-1 flex flex-col justify-between">
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
                   <div>
-                    <h4 className="text-lg font-bold text-slate-900">{member.name}</h4>
-                    <p className="text-xs font-semibold text-[#1E3A8A] mb-3">{member.filiere}</p>
-                    <p className="text-sm text-slate-600 leading-relaxed">{member.bio}</p>
+                    <h4 className="text-base font-bold text-slate-900 dark:text-white">
+                      {member.name}
+                    </h4>
+                    <div className="flex items-center space-x-1.5 text-xs text-[#1E3A8A] dark:text-blue-400 font-medium mt-0.5">
+                      <GraduationCap className="w-3.5 h-3.5" />
+                      <span>{member.filiere}</span>
+                    </div>
+                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mt-2.5">
+                      {member.bio}
+                    </p>
+                  </div>
+
+                  <div className="pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-400 dark:text-slate-500 font-mono">
+                    ID : {member.id.toUpperCase()} • PÔLE OPÉRATIONNEL
                   </div>
                 </div>
               </div>

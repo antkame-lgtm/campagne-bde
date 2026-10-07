@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { LifeBuoy, ShieldCheck, BookOpen, Users, Lock, Send, CheckCircle2, FileText, Download } from "lucide-react";
+import { LifeBuoy, ShieldCheck, BookOpen, Users, Lock, CheckCircle2, Download } from "lucide-react";
 
 export default function SosSection() {
-  const [subject, setSubject] = useState("");
+  const [subject, setSubject] = useState("difficultes-cours");
   const [message, setMessage] = useState("");
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
@@ -15,7 +15,7 @@ export default function SosSection() {
 
     setSent(true);
     setTimeout(() => {
-      setSubject("");
+      setSubject("difficultes-cours");
       setMessage("");
       setEmail("");
       setSent(false);
@@ -29,19 +29,19 @@ export default function SosSection() {
   ];
 
   return (
-    <section id="sos" className="py-16 sm:py-24 bg-white border-b border-slate-200">
+    <section id="sos" className="py-16 sm:py-24 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-red-50 text-red-700 border border-red-200 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+        <div className="max-w-3xl mb-14">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-900/50 rounded-md text-xs font-bold uppercase tracking-wider mb-3">
             <LifeBuoy className="w-3.5 h-3.5" />
-            <span>Entraide &amp; Solidarité</span>
+            <span>Entraide, Tutorat &amp; Solidarité d&apos;Urgence</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Espace &quot;SOS Étudiant&quot; &amp; Guichet d&apos;Aide
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Espace &quot;SOS Étudiant&quot; &amp; Guichet d&apos;Aide Confidentiel
           </h2>
-          <p className="mt-3 text-base text-slate-600">
+          <p className="mt-3 text-base text-slate-600 dark:text-slate-300">
             Personne ne doit rester isolé. Que vous ayez besoin d&apos;un soutien académique, d&apos;une aide
             sociale d&apos;urgence ou d&apos;un tuteur, notre pôle solidarité est là pour vous accompagner.
           </p>
@@ -50,41 +50,41 @@ export default function SosSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Colonne Gauche : Formulaire Confidentiel Chiffré */}
-          <div className="lg:col-span-7 bg-[#F8FAFC] border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-md">
+          <div className="lg:col-span-7 bg-[#F8FAFC] dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold text-slate-900 flex items-center space-x-2">
-                <Lock className="w-5 h-5 text-[#1E3A8A]" />
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center space-x-2">
+                <Lock className="w-5 h-5 text-[#1E3A8A] dark:text-blue-400" />
                 <span>Formulaire d&apos;Urgence Confidentiel</span>
               </h3>
-              <span className="inline-flex items-center space-x-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+              <span className="inline-flex items-center space-x-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-200 dark:border-emerald-800">
                 <ShieldCheck className="w-3.5 h-3.5" />
                 <span>Chiffré SSL</span>
               </span>
             </div>
 
-            <p className="text-xs text-slate-500 mb-6 leading-relaxed">
+            <p className="text-xs text-slate-500 dark:text-slate-400 mb-6 leading-relaxed">
               Vos informations sont strictement confidentielles et ne sont traitées que par le référent solidarité
-              du bureau, avec votre accord.
+              du bureau, avec votre accord explicite.
             </p>
 
             {sent ? (
-              <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-center space-y-2">
-                <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
-                <h4 className="font-bold text-emerald-900 text-sm">Message transmis en toute confidentialité</h4>
-                <p className="text-xs text-emerald-700">
+              <div className="p-6 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 rounded-2xl text-center space-y-2">
+                <CheckCircle2 className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mx-auto" />
+                <h4 className="font-bold text-emerald-900 dark:text-emerald-200 text-sm">Message transmis en toute confidentialité</h4>
+                <p className="text-xs text-emerald-700 dark:text-emerald-300">
                   Un membre référent prendra contact avec vous dans les 24 heures en toute discrétion.
                 </p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
                     Nature de la demande
                   </label>
                   <select
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-[#1E3A8A]"
+                    className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs font-medium text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-[#1E3A8A]"
                   >
                     <option value="difficultes-cours">Difficultés scolaires / Recherche d&apos;un tuteur</option>
                     <option value="soutien-social">Aide sociale d&apos;urgence / Précarité</option>
@@ -94,7 +94,7 @@ export default function SosSection() {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
                     Votre email de contact (ou numéro WhatsApp) *
                   </label>
                   <input
@@ -103,87 +103,82 @@ export default function SosSection() {
                     placeholder="prenom.nom@ecole.fr ou 06 XX XX XX XX"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-[#1E3A8A]"
+                    className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-[#1E3A8A]"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase mb-1">
-                    Votre message (explication libre) *
+                  <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">
+                    Décrivez votre situation (facultatif si vous préférez en parler de vive voix)
                   </label>
                   <textarea
                     rows={4}
-                    required
-                    placeholder="Expliquez brièvement votre situation pour que nous puissions orienter l'aide adéquate..."
+                    placeholder="Expliquez brièvement votre besoin..."
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-[#1E3A8A]"
+                    className="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-xs text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-[#1E3A8A]"
+                    required
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full py-3 bg-[#1E3A8A] text-white font-bold text-xs uppercase tracking-wider rounded-xl hover:bg-[#172554] shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer"
+                  className="w-full py-3 bg-[#1E3A8A] text-white font-bold text-xs rounded-xl hover:bg-[#172554] shadow-md transition-all cursor-pointer"
                 >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Envoyer la demande confidentielle</span>
+                  Transmettre la demande discrètement
                 </button>
               </form>
             )}
           </div>
 
-          {/* Colonne Droite : Tutorat & Ressources Pédagogiques */}
+          {/* Colonne Droite : Tutorat & Ressources de Révision */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Boîte Tutorat */}
-            <div className="p-6 rounded-3xl bg-blue-50/60 border border-blue-200">
-              <div className="w-10 h-10 rounded-xl bg-blue-100 text-[#1E3A8A] flex items-center justify-center mb-3">
-                <Users className="w-5 h-5" />
+            {/* Tutorat Étudiant */}
+            <div className="p-6 bg-[#F8FAFC] dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl">
+              <div className="flex items-center space-x-2 text-xs font-bold text-[#1E3A8A] dark:text-blue-400 uppercase tracking-wider mb-2">
+                <Users className="w-4 h-4" />
+                <span>Réseau de Tutorat Solidaire</span>
               </div>
-              <h4 className="text-lg font-bold text-slate-900 mb-2">Plateforme de Tutorat Solidaire</h4>
-              <p className="text-xs text-slate-600 leading-relaxed mb-4">
-                Des étudiants de Master et de 3e année s&apos;engagent bénévolement pour vous aider
-                à réviser vos partiels et rattrapages.
+              <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                Besoin d&apos;aide sur une matière ?
+              </h4>
+              <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                Nous mettons en relation des étudiants de promotion supérieure avec ceux qui rencontrent 
+                des blocages méthodologiques. Gratuit et sans jugement.
               </p>
-              <div className="flex gap-2">
-                <a
-                  href="#sos"
-                  className="px-3 py-1.5 rounded-lg bg-[#1E3A8A] text-white text-xs font-bold shadow-xs hover:bg-[#172554]"
-                >
-                  Devenir Tuteur
-                </a>
-                <a
-                  href="#sos"
-                  className="px-3 py-1.5 rounded-lg bg-white border border-blue-200 text-[#1E3A8A] text-xs font-bold hover:bg-blue-50"
-                >
-                  Demander un Tuteur
-                </a>
-              </div>
+              <a
+                href="https://chat.whatsapp.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-xs font-bold text-[#1E3A8A] dark:text-blue-400 hover:underline"
+              >
+                Rejoindre le groupe WhatsApp de tutorat &rarr;
+              </a>
             </div>
 
-            {/* Banque d'Annales */}
-            <div className="p-6 rounded-3xl bg-amber-50/50 border border-amber-200">
-              <div className="w-10 h-10 rounded-xl bg-amber-100 text-[#F59E0B] flex items-center justify-center mb-3">
-                <BookOpen className="w-5 h-5" />
+            {/* Téléchargement d'Annales */}
+            <div className="p-6 bg-[#F8FAFC] dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-3xl">
+              <div className="flex items-center space-x-2 text-xs font-bold text-[#F59E0B] uppercase tracking-wider mb-2">
+                <BookOpen className="w-4 h-4" />
+                <span>Base Collaborative d&apos;Annales</span>
               </div>
-              <h4 className="text-lg font-bold text-slate-900 mb-1">Banque de Ressources &amp; Annales</h4>
-              <p className="text-xs text-slate-600 mb-4">
-                Sujets d&apos;examens des années précédentes corrigés et partagés.
-              </p>
-
-              <div className="space-y-2">
+              <h4 className="text-base font-bold text-slate-900 dark:text-white mb-2">
+                Annales &amp; Fiches de Révision
+              </h4>
+              <div className="space-y-2 mt-3">
                 {sampleResources.map((res, idx) => (
                   <div
                     key={idx}
-                    className="p-2.5 rounded-xl bg-white border border-amber-100 flex items-center justify-between hover:border-amber-300 transition-colors"
+                    className="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 flex items-center justify-between text-xs"
                   >
-                    <div className="flex items-center space-x-2">
-                      <FileText className="w-4 h-4 text-amber-600 shrink-0" />
-                      <span className="text-xs font-medium text-slate-800 line-clamp-1">{res.title}</span>
+                    <div>
+                      <div className="font-semibold text-slate-800 dark:text-slate-200">{res.title}</div>
+                      <div className="text-[10px] text-slate-400">{res.format} • {res.size}</div>
                     </div>
                     <button
                       onClick={() => alert(`Téléchargement de : ${res.title}`)}
-                      className="p-1 rounded-md text-amber-700 hover:bg-amber-50"
+                      className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
                       title="Télécharger"
                     >
                       <Download className="w-4 h-4" />
@@ -196,7 +191,6 @@ export default function SosSection() {
           </div>
 
         </div>
-
       </div>
     </section>
   );
