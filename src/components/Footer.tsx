@@ -48,10 +48,11 @@ export default function Footer() {
             <ul className="space-y-2 text-xs">
               <li><a href="#qui-sommes-nous" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">1. Qui sommes-nous ?</a></li>
               <li><a href="#vision" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">2. Notre vision</a></li>
-              <li><a href="#programme" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">3. Notre programme (5 pôles)</a></li>
+              <li><a href="#programme" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">3. Notre programme</a></li>
               <li><a href="#calendrier" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">4. Notre calendrier</a></li>
               <li><a href="#impact" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">5. Ça change quoi ?</a></li>
               <li><a href="#avis" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">6. Donnez-nous votre avis</a></li>
+              <li><a href="#photos" className="hover:text-sky-500 dark:hover:text-white font-medium text-sky-700 dark:text-sky-300 transition-colors">7. Photos &amp; au SAMI</a></li>
             </ul>
           </div>
 
@@ -62,16 +63,12 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2.5 text-xs text-sky-800 dark:text-sky-300">
               <li>
-                <strong className="text-sky-700 dark:text-sky-200 block">QG de Campagne :</strong>
-                Hall d&apos;accueil et foyer étudiant
+                <strong className="text-sky-700 dark:text-sky-200 block">Sur le terrain :</strong>
+                Hall d&apos;accueil, foyer étudiant et au SAMI
               </li>
               <li>
-                <strong className="text-sky-700 dark:text-sky-200 block">Équipe de Salimata :</strong>
+                <strong className="text-sky-700 dark:text-sky-200 block">Rencontres :</strong>
                 Permanence d&apos;écoute et de discussion libre
-              </li>
-              <li>
-                <strong className="text-sky-700 dark:text-sky-200 block">Scrutin officiel :</strong>
-                Vendredi 23 octobre 2026 de 08h00 à 18h00
               </li>
             </ul>
           </div>

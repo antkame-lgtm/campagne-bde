@@ -9,13 +9,12 @@ import ProgramSection from "../components/ProgramSection";
 import CalendarSection from "../components/CalendarSection";
 import ImpactSection from "../components/ImpactSection";
 import FeedbackSection from "../components/FeedbackSection";
-import VotingGuideSection from "../components/VotingGuideSection";
+import GallerySection from "../components/GallerySection";
 import Footer from "../components/Footer";
 import { INITIAL_IDEAS, StudentIdea } from "../data/mockData";
 
 export default function Home() {
   const [ideas, setIdeas] = useState<StudentIdea[]>(INITIAL_IDEAS);
-  const [, setSupportCount] = useState(420);
   const [isDark, setIsDark] = useState(false);
 
   // Initialisation et persistance du mode sombre
@@ -66,11 +65,6 @@ export default function Home() {
     );
   };
 
-  // Inscription au comité de soutien
-  const handleJoinSupport = () => {
-    setSupportCount((prev) => prev + 1);
-  };
-
   return (
     <main className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-sky-900 dark:text-sky-100 transition-colors duration-200">
       {/* 0. Barre de Navigation Officielle avec Toggle Dark Mode */}
@@ -82,19 +76,19 @@ export default function Home() {
       {/* 1. Accueil — « Bienvenue dans notre vision » */}
       <Hero />
 
-      {/* 2. Qui sommes-nous ? (Candidate, Parcours, Pourquoi je me présente, Les 5 pôles) */}
+      {/* 2. Qui sommes-nous ? (Candidate, Parcours, Pourquoi je me présente, Les pôles) */}
       <AboutSection />
 
       {/* 3. Notre vision (Ce que nous voulons que la vie étudiante devienne) */}
       <VisionSection />
 
-      {/* 4. Notre programme (5 grands pôles d'action & fiches détaillées) */}
+      {/* 4. Notre programme (5 grands pôles d'action) */}
       <ProgramSection />
 
-      {/* 5. Notre calendrier (Chronologie annuelle d'actions d'Octobre à Juin) */}
+      {/* 5. Notre calendrier (Quand les actions auront lieu) */}
       <CalendarSection />
 
-      {/* 6. « Concrètement, ça change quoi ? » (Problème ➔ Solution ➔ Gain direct) */}
+      {/* 6. « Concrètement, ça change quoi ? » (Problèmes à résoudre selon les pôles) */}
       <ImpactSection />
 
       {/* 7. Donnez-nous votre avis (« Quelle est LA chose que vous aimeriez voir changer ? » + inspiration) */}
@@ -104,8 +98,8 @@ export default function Home() {
         onVote={handleVote}
       />
 
-      {/* Guide officiel du vote & FAQ */}
-      <VotingGuideSection onJoinSupport={handleJoinSupport} />
+      {/* 8. Sur le terrain : photos avec vous cette semaine & au SAMI */}
+      <GallerySection />
 
       {/* Pied de page institutionnel */}
       <Footer />

@@ -20,11 +20,11 @@ export default function CalendarSection() {
             <span>Section 5 • Notre calendrier</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 dark:text-sky-400 tracking-tight">
-            La chronologie annuelle de nos actions
+            Quand les actions auront lieu
           </h2>
           <p className="mt-4 text-base sm:text-lg text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
-            Pour que les promesses ne restent pas des mots, voici comment notre mandat s&apos;organise 
-            mois par mois, de la rentrée jusqu&apos;à la fin d&apos;année universitaire.
+            Pour montrer clairement quand les actions auront lieu, voici l&apos;organisation prévisionnelle 
+            de notre mandat au fil des mois.
           </p>
         </div>
 
@@ -44,7 +44,7 @@ export default function CalendarSection() {
               >
                 <span>{item.month}</span>
                 <span className={`ml-1.5 text-xs ${isSelected ? "text-sky-100" : "text-sky-400"}`}>
-                  • {item.theme}
+                  → {item.theme}
                 </span>
               </button>
             );
@@ -57,18 +57,18 @@ export default function CalendarSection() {
             <div>
               <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-sky-500 dark:text-sky-400 mb-1">
                 <Clock className="w-3.5 h-3.5" />
-                <span>{currentMonth.badge} • Calendrier du mandat</span>
+                <span>{currentMonth.badge} • Planification</span>
               </div>
               <h3 className="text-2xl sm:text-3xl font-bold text-sky-700 dark:text-sky-300">
                 {currentMonth.month} : {currentMonth.theme}
               </h3>
             </div>
             <span className="text-xs font-semibold text-sky-600 dark:text-sky-400">
-              {currentMonth.events.length} actions programmées
+              {currentMonth.events.length} axe(s) clé(s)
             </span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {currentMonth.events.map((evt, idx) => (
               <div
                 key={idx}
@@ -85,10 +85,7 @@ export default function CalendarSection() {
                 <div className="pt-4 mt-6 border-t border-sky-100 dark:border-sky-900/40 flex items-center justify-between text-xs text-sky-500 dark:text-sky-400 font-medium">
                   <span className="flex items-center space-x-1">
                     <CheckCircle2 className="w-3.5 h-3.5" />
-                    <span>Planifié</span>
-                  </span>
-                  <span className="font-mono text-xs">
-                    2026-2027
+                    <span>Prévu</span>
                   </span>
                 </div>
               </div>

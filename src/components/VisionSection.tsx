@@ -8,30 +8,30 @@ export default function VisionSection() {
     {
       icon: Users2,
       num: "01",
-      title: "Un campus vivant et rassembleur",
-      desc: "Rompre avec la routine « cours-métro-dodo ». Nous voulons un campus où l'on a envie de rester, rythmé par des événements réguliers, des espaces conviviaux et une véritable cohésion inter-promotions.",
-      highlight: "Faire de notre école un lieu de vie mémorable"
-    },
-    {
-      icon: HeartHandshake,
-      num: "02",
-      title: "La réussite académique sans isolement",
-      desc: "Chacun a le droit d'être soutenu. Nous voulons une vie étudiante où l'entraide est naturelle : fiches d'annales en libre accès, tutorat bienveillant et ateliers ciblés avant chaque période d'examens.",
-      highlight: "Zéro étudiant laissé seul face aux partiels"
+      title: "Une vie étudiante plus dynamique",
+      desc: "Rompre avec la routine cours-métro-dodo. Nous voulons un campus vivant où l'on a plaisir à rester, rythmé par des événements réguliers et des activités partagées.",
+      highlight: "Dynamisme & cohésion"
     },
     {
       icon: Rocket,
+      num: "02",
+      title: "Une communauté plus ambitieuse",
+      desc: "Donner à chacun les moyens de réussir : du soutien méthodologique aux opportunités de stages et rencontres professionnelles pour propulser l'avenir de tous.",
+      highlight: "Réussite & tremplin"
+    },
+    {
+      icon: HeartHandshake,
       num: "03",
-      title: "Un tremplin concret vers votre avenir",
-      desc: "La vie étudiante doit booster vos perspectives de carrière. Nous voulons multiplier les passerelles avec les anciens diplômés (alumni), les recruteurs et le tissu économique pour décrocher stages et alternances.",
-      highlight: "Des opportunités tangibles dès la 1ère année"
+      title: "Une entraide plus solidaire",
+      desc: "Prendre soin de chacun au quotidien. Zéro étudiant laissé seul face aux difficultés, avec une véritable écoute et des actions sociales bienveillantes.",
+      highlight: "Solidarité & bien-être"
     },
     {
       icon: ShieldCheck,
       num: "04",
-      title: "Une équipe à votre écoute au quotidien",
-      desc: "Le BDE n'est pas une tour d'ivoire. Nous voulons une gouvernance transparente et accessible : chaque avis compte, chaque difficulté est entendue, et nos comptes sont consultables par tous les étudiants.",
-      highlight: "Transparence totale et présence continue"
+      title: "Un bureau plus proche de vous",
+      desc: "Un BDE accessible, transparent et sur le terrain : chaque proposition est écoutée et chaque décision est partagée ouvertement avec les étudiants.",
+      highlight: "Écoute & transparence"
     }
   ];
 
@@ -49,9 +49,8 @@ export default function VisionSection() {
             Ce que nous voulons que la vie étudiante devienne
           </h2>
           <p className="mt-4 text-base sm:text-lg text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
-            Notre vision repose sur une conviction simple : votre passage dans cette école doit être bien plus 
-            qu&apos;une série de cours. Il doit être une expérience humaine, solidaire et enrichissante qui vous donne 
-            toutes les clés pour réussir.
+            Une vie étudiante plus dynamique, plus ambitieuse et plus proche de ses étudiants. 
+            Découvrez les 4 dimensions de notre vision pour transformer notre quotidien.
           </p>
         </div>
 

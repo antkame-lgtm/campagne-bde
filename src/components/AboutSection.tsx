@@ -16,7 +16,7 @@ export default function AboutSection() {
             <span>Section 2 • Qui sommes-nous ?</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 dark:text-sky-400 tracking-tight">
-            Faire connaissance avec Salimata &amp; l&apos;équipe
+            Présentation de Salimata &amp; les différents pôles
           </h2>
           <p className="mt-3 text-base text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
             Une candidature née d&apos;un constat lucide sur le terrain et portée par la volonté 
@@ -30,7 +30,7 @@ export default function AboutSection() {
           <div className="lg:col-span-7 space-y-8">
             <div className="space-y-3">
               <h3 className="text-xl font-bold text-sky-700 dark:text-sky-300">
-                Mon parcours sur le campus
+                Mon parcours en quelques lignes
               </h3>
               <p className="text-base text-sky-800/90 dark:text-sky-200 leading-relaxed font-medium">
                 {CANDIDATE_INFO.bio}
@@ -53,11 +53,11 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* Colonne Droite : Les 5 Pôles en liste épurée et légère */}
+          {/* Colonne Droite : Les différents Pôles en liste épurée et légère */}
           <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-sky-50/50 dark:bg-slate-900/60 border border-sky-200/80 dark:border-sky-800/80 space-y-5">
             <div className="flex items-center justify-between pb-3 border-b border-sky-200/60 dark:border-sky-800">
               <h3 className="text-sm font-black uppercase tracking-wider text-sky-700 dark:text-sky-300">
-                Les 5 Pôles de Notre Équipe
+                Les Différents Pôles
               </h3>
               <span className="text-xs font-mono font-bold text-sky-500">
                 Mandat 2026-2027

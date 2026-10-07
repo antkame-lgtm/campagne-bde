@@ -18,6 +18,7 @@ export default function Navbar({ isDark, onToggleDark }: NavbarProps) {
     { label: "Calendrier", href: "#calendrier" },
     { label: "Ça change quoi ?", href: "#impact" },
     { label: "Donnez votre avis", href: "#avis" },
+    { label: "Photos & SAMI", href: "#photos" },
   ];
 
   return (

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { MANDATE_POLES } from "../data/mockData";
-import { CheckCircle2, Layers, Calendar, Coins, GraduationCap, PartyPopper, Briefcase, HeartHandshake, Lightbulb } from "lucide-react";
+import { Layers, GraduationCap, PartyPopper, Briefcase, HeartHandshake, Lightbulb } from "lucide-react";
 
 export default function ProgramSection() {
   const [selectedPoleId, setSelectedPoleId] = useState<string>("academique");
@@ -22,18 +22,17 @@ export default function ProgramSection() {
     <section id="programme" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-200 dark:border-sky-900/60 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Titre & Note Méthodologique */}
+        {/* Titre & Description fidèle */}
         <div className="max-w-3xl mb-14">
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 border border-sky-200 dark:border-sky-800 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
             <Layers className="w-3.5 h-3.5 text-sky-500" />
             <span>Section 4 • Notre programme</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 dark:text-sky-400 tracking-tight">
-            5 grands pôles d&apos;action pour transformer notre quotidien
+            Notre programme par grands pôles
           </h2>
           <p className="mt-3 text-base text-sky-800 dark:text-sky-200 font-medium">
-            Un programme structuré, réaliste et directement inspiré de vos besoins réels. 
-            Chaque mesure est planifiée avec une évaluation technique et budgétaire rigoureuse.
+            Des actions concrètes réparties par domaines d&apos;intervention pour dynamiser et accompagner la vie étudiante.
           </p>
         </div>
 
@@ -63,7 +62,7 @@ export default function ProgramSection() {
         <div className="bg-white dark:bg-slate-900 rounded-3xl border border-sky-100 dark:border-sky-900/60 p-6 sm:p-10 transition-colors">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Colonne Gauche : Synthèse & Cadre */}
+            {/* Colonne Gauche : Synthèse du pôle */}
             <div className="lg:col-span-5 space-y-5">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-500 flex items-center justify-center shrink-0 border border-sky-100 dark:border-sky-900/60">
@@ -71,7 +70,7 @@ export default function ProgramSection() {
                 </div>
                 <div>
                   <span className="font-mono text-xs font-bold text-sky-500 dark:text-sky-400 uppercase tracking-wider block">
-                    Pôle {currentPole.number} • Mandat 2026-2027
+                    Pôle {currentPole.number}
                   </span>
                   <h3 className="text-2xl sm:text-3xl font-bold text-sky-700 dark:text-sky-300">
                     {currentPole.title}
@@ -82,25 +81,12 @@ export default function ProgramSection() {
               <p className="text-sm sm:text-base text-sky-800/80 dark:text-sky-200/90 leading-relaxed font-normal">
                 {currentPole.summary}
               </p>
-
-              {/* Repères opérationnels discrets */}
-              <div className="pt-4 border-t border-sky-100 dark:border-sky-900/40 flex flex-wrap gap-4 text-xs font-medium text-sky-700 dark:text-sky-300">
-                <div className="flex items-center space-x-1.5">
-                  <Coins className="w-3.5 h-3.5 text-sky-500" />
-                  <span>Budget : <strong className="font-semibold text-sky-900 dark:text-sky-100">{currentPole.budget}</strong></span>
-                </div>
-                <span className="text-sky-300 dark:text-sky-700">•</span>
-                <div className="flex items-center space-x-1.5">
-                  <Calendar className="w-3.5 h-3.5 text-sky-500" />
-                  <span>Échéance : <strong className="font-semibold text-sky-900 dark:text-sky-100">{currentPole.deadline}</strong></span>
-                </div>
-              </div>
             </div>
 
-            {/* Colonne Droite : Engagements clés aérés */}
+            {/* Colonne Droite : Points clés indiqués par Salimata */}
             <div className="lg:col-span-7">
               <div className="text-xs font-bold uppercase tracking-wider text-sky-500 dark:text-sky-400 mb-4 pb-2 border-b border-sky-100 dark:border-sky-900/40">
-                Engagements concrets pour ce pôle ({currentPole.proposals.length})
+                Actions &amp; priorités du pôle
               </div>
 
               <div className="divide-y divide-sky-100 dark:divide-sky-900/40">
@@ -113,10 +99,6 @@ export default function ProgramSection() {
                       <p className="text-sm sm:text-base font-semibold text-sky-800 dark:text-sky-200 leading-snug">
                         {prop}
                       </p>
-                      <span className="inline-flex items-center space-x-1 text-xs text-sky-500 dark:text-sky-400 font-medium mt-1">
-                        <CheckCircle2 className="w-3 h-3 text-sky-400" />
-                        <span>Planifié et budgété</span>
-                      </span>
                     </div>
                   </div>
                 ))}

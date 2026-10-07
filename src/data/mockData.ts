@@ -4,8 +4,8 @@ export interface ProgramPillar {
   title: string;
   icon?: string;
   summary: string;
-  feasibilityTechnical: number;
-  feasibilityFinancial: number;
+  feasibilityTechnical?: number;
+  feasibilityFinancial?: number;
   budget?: string;
   deadline?: string;
   proposals: string[];
@@ -64,178 +64,166 @@ export const CANDIDATE_INFO = {
   ]
 };
 
-// 2. Les 5 grands pôles du mandat
+// 2. Les 5 grands pôles du mandat (Strictement basés sur les indications de Salimata)
 export const MANDATE_POLES = [
   {
     id: "academique",
     number: "01",
     title: "Vie académique",
-    summary: "Accompagner la réussite de chacun à travers des ressources partagées et du tutorat structuré.",
+    summary: "Accompagner la réussite et le travail de tous les étudiants au quotidien.",
     proposals: [
-      "Banque d'annales et fiches de synthèse collaboratives en ligne en libre accès",
-      "Mise en place d'un réseau de tutorat entre promotions supérieures et nouveaux arrivants",
-      "Ateliers méthodologiques et de préparation aux partiels avec créneaux dédiés"
-    ],
-    feasibilityTechnical: 92,
-    feasibilityFinancial: 85,
-    budget: "1 800 €",
-    deadline: "Dès Octobre 2026"
+      "Accompagnement des étudiants",
+      "Ateliers",
+      "Partage de ressources",
+      "Soutien méthodologique & entraide"
+    ]
   },
   {
     id: "etudiante",
     number: "02",
     title: "Vie étudiante",
-    summary: "Rythmer l'année avec des événements rassembleurs, des tournois et des moments mémorables.",
+    summary: "Rendre le campus vivant et chaleureux tout au long de l'année.",
     proposals: [
-      "Organisation de journées à thème mensuelles et d'afterworks conviviaux sur le campus",
-      "Compétitions sportives et tournois e-sport inter-promos et inter-écoles",
-      "Grand gala annuel de fin d'année accessible à tous avec formule solidaire"
-    ],
-    feasibilityTechnical: 88,
-    feasibilityFinancial: 90,
-    budget: "4 200 €",
-    deadline: "Tout au long de l'année"
+      "Activités",
+      "Journées à thème",
+      "Événements",
+      "Compétitions"
+    ]
   },
   {
     id: "carriere",
     number: "03",
     title: "Professionnel & carrière",
-    summary: "Créer des passerelles directes avec le monde professionnel et accélérer l'insertion.",
+    summary: "Ouvrir des portes concrètes vers le monde professionnel et l'insertion.",
     proposals: [
-      "Rencontres et tables rondes avec des professionnels et recruteurs partenaires",
-      "Conférences thématiques et panels animés par le réseau des anciens élèves (Alumni)",
-      "Bourse aux opportunités de stages et d'alternances relayées en direct"
-    ],
-    feasibilityTechnical: 85,
-    feasibilityFinancial: 80,
-    budget: "2 000 €",
-    deadline: "Novembre 2026 & Février 2027"
+      "Rencontres avec professionnels",
+      "Conférences",
+      "Opportunités de stages",
+      "Panels"
+    ]
   },
   {
     id: "solidarite",
     number: "04",
     title: "Solidarité & bien-être",
-    summary: "Améliorer concrètement votre quotidien et veiller au bien-être physique et moral de tous.",
+    summary: "Prendre soin de chacun, écouter et améliorer le quotidien à l'école.",
     proposals: [
-      "Guichet d'écoute anonyme et confidentiel pour les difficultés personnelles ou scolaires",
-      "Actions sociales d'urgence et paniers étudiants à tarif coûtant symbolique",
-      "Espaces de détente aménagés et initiatives bien-être pour lutter contre le stress"
-    ],
-    feasibilityTechnical: 95,
-    feasibilityFinancial: 88,
-    budget: "2 500 €",
-    deadline: "Permanent 7j/7"
+      "Actions sociales",
+      "Initiatives pour améliorer le quotidien",
+      "Écoute des étudiants"
+    ]
   },
   {
     id: "innovation",
     number: "05",
     title: "Innovation & projets",
-    summary: "Soutenir l'esprit d'initiative, financer vos idées et encourager l'entrepreneuriat.",
+    summary: "Encourager la créativité et soutenir l'esprit d'initiative des étudiants.",
     proposals: [
-      "Concours annuel d'idées étudiantes avec financement de démarrage pour les lauréats",
-      "Incubateur d'initiatives associatives et soutien logistique pour vos projets personnels",
-      "Hackathons créatifs et challenges entrepreneuriaux inter-filières"
-    ],
-    feasibilityTechnical: 80,
-    feasibilityFinancial: 78,
-    budget: "2 200 €",
-    deadline: "Novembre 2026 & Mars 2027"
+      "Concours d’idées",
+      "Projets étudiants",
+      "Initiatives entrepreneuriales"
+    ]
   }
 ];
 
-// 3. Le Calendrier annuel d'actions
+// 3. Le Calendrier des actions (Strictement selon Salimata)
 export const CALENDAR_SCHEDULE: CalendarMonth[] = [
   {
     month: "Octobre",
-    theme: "Intégration & Accueil",
-    badge: "Mois 01",
+    theme: "Intégration",
+    badge: "Étape 01",
     events: [
-      "Accueil et parrainage des nouveaux inscrits",
-      "Lancement de la plateforme participative et boîte à idées",
-      "Soirée d'intégration officielle inter-promos"
+      "Accueil et intégration de l'ensemble des étudiants",
+      "Création de liens et cohésion inter-promotions"
     ]
   },
   {
     month: "Novembre",
-    theme: "Entrepreneuriat & Carrières",
-    badge: "Mois 02",
+    theme: "Mois de l’entrepreneuriat",
+    badge: "Étape 02",
     events: [
-      "Mois de l'entrepreneuriat : ateliers et pitch challenge",
-      "Premier panel professionnel avec les diplômés (Alumni)",
-      "Lancement des groupes de tutorat méthodologique"
+      "Mois dédié à l'entrepreneuriat et aux initiatives",
+      "Ateliers et rencontres professionnelles"
     ]
   },
   {
     month: "Décembre",
-    theme: "Solidarité & Gala d'Hiver",
-    badge: "Mois 03",
+    theme: "Événement étudiant",
+    badge: "Étape 03",
     events: [
-      "Collecte solidaire et paniers d'hiver",
-      "Soirée étudiante de fin de semestre",
-      "Mise à disposition des annales pour les partiels de janvier"
+      "Grand événement étudiant festif et rassembleur",
+      "Moment convivial avant la fin de semestre"
     ]
   },
   {
-    month: "Janvier",
-    theme: "Réussite & Révisions",
-    badge: "Mois 04",
+    month: "Janvier et suite",
+    theme: "Organisation collaborative",
+    badge: "Étape 04",
     events: [
-      "Permanences d'entraide et sessions révisions intensives",
-      "Distribution de boissons chaudes et encas en bibliothèque",
-      "Point d'étape public : bilan financier du 1er trimestre"
-    ]
-  },
-  {
-    month: "Février",
-    theme: "Forum Métiers & Stages",
-    badge: "Mois 05",
-    events: [
-      "Forum Entreprises annuel & ateliers CV / simulation d'entretiens",
-      "Rencontres thématiques par filières",
-      "Lancement du concours d'innovation étudiante"
-    ]
-  },
-  {
-    month: "Mars - Mai",
-    theme: "Sport, Culture & Grand Gala",
-    badge: "Mois 06-08",
-    events: [
-      "Tournoi inter-promos et défis e-sport",
-      "Journée des talents artistiques et culturels du campus",
-      "Grand Gala de fin d'année et passation officielle"
+      "Organisation des actions suivantes avec les étudiants",
+      "Intégration des propositions récoltées dans la boîte à idées"
     ]
   }
 ];
 
-// 4. « Concrètement, ça change quoi ? »
+// 4. « Concrètement, ça change quoi ? » (Les problèmes à résoudre selon les pôles)
 export const IMPACT_COMPARISONS: ImpactItem[] = [
   {
     id: "impact-1",
     pole: "Vie académique",
-    problem: "Partiels approchant sans accès clair aux annales des années passées.",
-    solution: "Une banque d'annales corrigées et fiches de synthèse ouvertes à tous en ligne.",
-    gain: "Moins de stress, révisions plus efficaces."
+    problem: "Isolement face aux révisions et manque de partage de ressources entre promos.",
+    solution: "Accompagnement dédié, ateliers ciblés et partage de ressources pour tous.",
+    gain: "Une réussite accessible sans rester seul face aux cours."
   },
   {
     id: "impact-2",
-    pole: "Carrière & Réseau",
-    problem: "Difficulté à trouver des stages et sentiment de manquer de contacts utiles.",
-    solution: "Des rencontres directes avec des recruteurs et un réseau d'anciens mobilisé.",
-    gain: "Un tremplin concret vers votre premier emploi."
+    pole: "Vie étudiante",
+    problem: "Un campus parfois trop calme après les cours et manque d'animations régulières.",
+    solution: "Des activités régulières, journées à thème, événements et compétitions dynamiques.",
+    gain: "Une vraie vie étudiante où l'on a plaisir à rester."
   },
   {
     id: "impact-3",
-    pole: "Démocratie étudiante",
-    problem: "Idées déposées qui restent sans réponse et décisions prises en vase clos.",
-    solution: "Une boîte à idées où chaque proposition populaire est débattue sous 14 jours.",
-    gain: "Une vraie voix au chapitre pour chaque promotion."
+    pole: "Professionnel & carrière",
+    problem: "Difficulté à trouver des stages et manque d'accès direct au monde professionnel.",
+    solution: "Rencontres avec des professionnels, conférences, opportunités de stages et panels.",
+    gain: "Un réseau direct et des opportunités dès la première année."
   },
   {
     id: "impact-4",
-    pole: "Bien-être & Pouvoir d'achat",
-    problem: "Événements parfois trop coûteux et manque de soutien en cas de coup dur.",
-    solution: "Tarifs solidaires garantis (≤ 5 €) et fonds d'écoute/urgence confidentiel.",
-    gain: "Un campus inclusif où personne n'est laissé pour compte."
+    pole: "Solidarité & bien-être",
+    problem: "Besoins du quotidien peu écoutés et pas assez d'initiatives solidaires.",
+    solution: "Écoute attentive des étudiants, actions sociales et initiatives concrètes pour le quotidien.",
+    gain: "Une communauté bienveillante et solidaire au quotidien."
+  },
+  {
+    id: "impact-5",
+    pole: "Innovation & projets",
+    problem: "Des idées étudiantes qui manquent d'espace ou d'encouragement pour se réaliser.",
+    solution: "Organisation de concours d'idées, soutien aux projets étudiants et initiatives entrepreneuriales.",
+    gain: "Vos projets valorisés et encouragés par votre BDE."
+  }
+];
+
+// 5. Photos avec les étudiants et au SAMI (Demandé à la fin par Salimata)
+export const CAMPUS_PHOTOS = [
+  {
+    title: "Échanges & rencontres sur le campus",
+    subtitle: "Avec les étudiants cette semaine",
+    tag: "Cette semaine",
+    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Au SAMI avec vous",
+    subtitle: "Moments partagés & discussions libres",
+    tag: "Au SAMI",
+    imageUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+  },
+  {
+    title: "Mobilisation & énergie collective",
+    subtitle: "À l'écoute de chaque promotion",
+    tag: "Sur le terrain",
+    imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
