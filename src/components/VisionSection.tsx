@@ -55,36 +55,34 @@ export default function VisionSection() {
           </p>
         </div>
 
-        {/* 4 Piliers de la Vision */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 4 Piliers de la Vision - Disposition aérée et épurée */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {visionPillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div
                 key={pillar.num}
-                className="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-800 flex flex-col justify-between hover:border-sky-400 dark:hover:border-sky-600 transition-all shadow-xs hover:shadow-md"
+                className="group relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-sky-900/60 hover:border-sky-300 dark:hover:border-sky-700 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-2xl font-black text-sky-500 dark:text-sky-400">
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-mono text-xl font-black text-sky-400 dark:text-sky-500">
                       {pillar.num}
                     </span>
-                    <div className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-500 dark:text-sky-400 flex items-center justify-center border border-sky-200 dark:border-sky-800">
-                      <Icon className="w-4 h-4" />
-                    </div>
+                    <Icon className="w-5 h-5 text-sky-500/80 group-hover:text-sky-500 transition-colors" />
                   </div>
 
-                  <h3 className="text-base font-bold text-sky-700 dark:text-sky-300 mb-2 leading-snug">
+                  <h3 className="text-base sm:text-lg font-bold text-sky-700 dark:text-sky-300 mb-2.5 leading-snug">
                     {pillar.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-sky-800 dark:text-sky-200 font-medium leading-relaxed mb-4">
+                  <p className="text-xs sm:text-sm text-sky-800/80 dark:text-sky-200/90 leading-relaxed font-normal">
                     {pillar.desc}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-sky-100 dark:border-sky-900/60 text-[11px] font-bold text-sky-600 dark:text-sky-400 flex items-center space-x-1.5">
-                  <Sparkles className="w-3.5 h-3.5 shrink-0 text-sky-500" />
+                <div className="mt-5 pt-4 border-t border-sky-100 dark:border-sky-900/40 text-xs font-semibold text-sky-600 dark:text-sky-400 flex items-center space-x-1.5">
+                  <Sparkles className="w-3.5 h-3.5 shrink-0 text-sky-400" />
                   <span>{pillar.highlight}</span>
                 </div>
               </div>

@@ -142,20 +142,20 @@ export default function FeedbackSection({
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Formulaire Principal (Colonne Gauche - 5 cols) */}
-          <div className="lg:col-span-5 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border-2 border-sky-200 dark:border-sky-800 shadow-xl shadow-sky-500/5 transition-colors">
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-sky-100 dark:border-sky-800">
-              <h3 className="text-lg font-bold text-sky-700 dark:text-sky-300 flex items-center space-x-2">
+          {/* Formulaire Principal (Colonne Gauche - 5 cols) - Épuré et clair */}
+          <div className="lg:col-span-5 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-sky-100 dark:border-sky-900/60 transition-colors">
+            <div className="flex items-center justify-between pb-4 mb-5 border-b border-sky-100 dark:border-sky-900/40">
+              <h3 className="text-base font-bold text-sky-700 dark:text-sky-300 flex items-center space-x-2">
                 <Send className="w-4 h-4 text-sky-500" />
                 <span>Votre Proposition</span>
               </h3>
               <button
                 type="button"
                 onClick={() => setShowInspiration(!showInspiration)}
-                className="text-xs font-bold text-sky-600 dark:text-sky-400 hover:underline flex items-center space-x-1 cursor-pointer"
+                className="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center space-x-1 cursor-pointer"
               >
-                <Sparkles className="w-3.5 h-3.5 text-sky-500" />
-                <span>{showInspiration ? "Masquer les idées" : "Besoin d'inspiration ?"}</span>
+                <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+                <span>{showInspiration ? "Masquer les idées" : "Idées d'inspiration"}</span>
               </button>
             </div>
 
@@ -317,17 +317,17 @@ export default function FeedbackSection({
           {/* Mur Citoyen des Retours & Votes (Colonne Droite - 7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             
-            {/* Barre de filtres et recherche */}
+            {/* Barre de filtres et recherche - Pills épurées */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
               <div className="flex items-center space-x-1.5 overflow-x-auto pb-1 scrollbar-none">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all cursor-pointer ${
                       activeCategory === cat
                         ? "bg-sky-500 text-white shadow-xs"
-                        : "bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 hover:bg-sky-50 dark:hover:bg-slate-800 border border-sky-200 dark:border-sky-800"
+                        : "bg-white dark:bg-slate-900 text-sky-800 dark:text-sky-200 hover:bg-sky-50 dark:hover:bg-slate-800 border border-sky-100 dark:border-sky-900/60"
                     }`}
                   >
                     {cat}
@@ -339,20 +339,20 @@ export default function FeedbackSection({
                 <Search className="w-3.5 h-3.5 text-sky-400 absolute left-3 top-1/2 -translate-y-1/2" />
                 <input
                   type="text"
-                  placeholder="Filtrer les idées..."
+                  placeholder="Rechercher..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-8 pr-3 py-2 bg-white dark:bg-slate-950 border border-sky-200 dark:border-sky-800 rounded-xl text-xs text-sky-900 dark:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                  className="w-full pl-8 pr-3 py-2 bg-white dark:bg-slate-950 border border-sky-100 dark:border-sky-900/60 rounded-full text-xs text-sky-900 dark:text-sky-100 focus:outline-none focus:ring-2 focus:ring-sky-500 font-medium"
                 />
               </div>
             </div>
 
-            {/* Liste des idées soumises */}
+            {/* Liste des idées soumises - Aérée et lisible */}
             <div className="space-y-4">
               {filteredIdeas.length === 0 ? (
                 <div className="text-center py-12 bg-white dark:bg-slate-900 rounded-2xl border border-dashed border-sky-200 dark:border-sky-800">
                   <Lightbulb className="w-8 h-8 text-sky-400 mx-auto mb-2" />
-                  <p className="text-sm font-bold text-sky-700 dark:text-sky-300">
+                  <p className="text-sm font-semibold text-sky-700 dark:text-sky-300">
                     Aucune proposition trouvée dans cette catégorie.
                   </p>
                   <p className="text-xs text-sky-600 dark:text-sky-400 font-medium mt-1">
@@ -363,14 +363,14 @@ export default function FeedbackSection({
                 filteredIdeas.map((idea) => (
                   <div
                     key={idea.id}
-                    className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 transition-all flex flex-col justify-between shadow-xs"
+                    className="p-5 sm:p-6 rounded-2xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-sky-900/60 hover:border-sky-300 dark:hover:border-sky-700 transition-all flex flex-col justify-between"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-2.5 gap-2">
-                        <span className="text-[11px] font-bold text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/80 px-2.5 py-0.5 rounded-full border border-sky-200 dark:border-sky-800">
+                        <span className="text-[11px] font-semibold text-sky-600 dark:text-sky-400 bg-sky-50 dark:bg-sky-950/80 px-2.5 py-0.5 rounded-full border border-sky-100 dark:border-sky-900/60">
                           {idea.category}
                         </span>
-                        <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${getStatusBadge(idea.status)}`}>
+                        <span className={`text-[11px] font-medium px-2 py-0.5 rounded-full border ${getStatusBadge(idea.status)}`}>
                           {idea.status}
                         </span>
                       </div>
@@ -379,26 +379,26 @@ export default function FeedbackSection({
                         {idea.title}
                       </h4>
 
-                      <p className="text-xs sm:text-sm text-sky-900 dark:text-sky-300 font-medium leading-relaxed mb-4">
+                      <p className="text-xs sm:text-sm text-sky-900/80 dark:text-sky-300 font-normal leading-relaxed mb-4">
                         {idea.description}
                       </p>
                     </div>
 
-                    <div className="pt-3 border-t border-sky-100 dark:border-sky-800 flex items-center justify-between">
+                    <div className="pt-3 border-t border-sky-100 dark:border-sky-900/40 flex items-center justify-between">
                       <span className="text-xs text-sky-600 dark:text-sky-400 font-medium">
-                        Par <strong className="text-sky-800 dark:text-sky-200">{idea.author}</strong> • {idea.createdAt}
+                        Par <strong className="text-sky-800 dark:text-sky-200 font-semibold">{idea.author}</strong> • {idea.createdAt}
                       </span>
 
                       <button
                         type="button"
                         onClick={() => onVote(idea.id)}
-                        className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                        className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition-all cursor-pointer ${
                           idea.hasVoted
                             ? "bg-sky-500 text-white border-sky-600 shadow-xs"
-                            : "bg-white dark:bg-slate-950 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 hover:bg-sky-50 dark:hover:bg-slate-800 hover:text-sky-800"
+                            : "bg-white dark:bg-slate-950 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800 hover:border-sky-300 hover:bg-sky-50"
                         }`}
                       >
-                        <ThumbsUp className={`w-3.5 h-3.5 ${idea.hasVoted ? "fill-white" : ""}`} />
+                        <ThumbsUp className={`w-3 h-3 ${idea.hasVoted ? "fill-white" : ""}`} />
                         <span>{idea.votes}</span>
                         <span className="hidden sm:inline">{idea.hasVoted ? "Voté !" : "Soutenir"}</span>
                       </button>

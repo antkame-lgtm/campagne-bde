@@ -24,53 +24,51 @@ export default function ImpactSection() {
           </p>
         </div>
 
-        {/* Grille de Comparaisons Avant / Après */}
+        {/* Grille de Comparaisons Avant / Après - Disposition aérée et épurée */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {IMPACT_COMPARISONS.map((item, idx) => (
             <div
               key={item.id}
-              className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-sky-200 dark:border-sky-800 shadow-sm flex flex-col justify-between hover:border-sky-400 dark:hover:border-sky-600 transition-all hover:shadow-md"
+              className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-sky-900/60 hover:border-sky-300 dark:hover:border-sky-700 transition-all flex flex-col justify-between"
             >
-              <div className="space-y-5">
-                {/* Badge du Pôle */}
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold uppercase text-sky-700 dark:text-sky-300 bg-sky-50 dark:bg-sky-950/80 px-3 py-1 rounded-full border border-sky-200 dark:border-sky-800">
+              <div>
+                {/* En-tête de cas */}
+                <div className="flex items-center justify-between mb-6 pb-3 border-b border-sky-100 dark:border-sky-900/40">
+                  <span className="text-xs font-bold uppercase tracking-wider text-sky-600 dark:text-sky-400">
                     {item.pole}
                   </span>
-                  <span className="font-mono text-xs text-sky-400 font-bold">
-                    Cas 0{idx + 1}
+                  <span className="font-mono text-xs text-sky-400 font-semibold">
+                    0{idx + 1}
                   </span>
                 </div>
 
-                {/* Le Problème Actuel */}
-                <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-sky-200 dark:border-sky-800 space-y-1.5 shadow-2xs">
-                  <div className="flex items-center space-x-1.5 text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider">
-                    <AlertCircle className="w-4 h-4 shrink-0 text-sky-500" />
-                    <span>Le problème aujourd&apos;hui</span>
+                {/* Le constat actuel */}
+                <div className="mb-5">
+                  <div className="flex items-center space-x-1.5 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-1.5">
+                    <AlertCircle className="w-3.5 h-3.5 text-slate-400" />
+                    <span>Constat actuel</span>
                   </div>
-                  <p className="text-sm text-sky-900 dark:text-sky-200 leading-relaxed font-semibold">
+                  <p className="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
                     {item.problem}
                   </p>
                 </div>
 
-                {/* La Solution Apportée Candy Blue */}
-                <div className="p-4 rounded-2xl bg-sky-50 dark:bg-sky-950/60 border border-sky-300 dark:border-sky-800 space-y-1.5 shadow-2xs">
-                  <div className="flex items-center space-x-1.5 text-xs font-bold text-sky-700 dark:text-sky-300 uppercase tracking-wider">
-                    <CheckCircle className="w-4 h-4 shrink-0 text-sky-500" />
-                    <span>Notre solution concrète</span>
+                {/* La solution concrète */}
+                <div className="mb-6">
+                  <div className="flex items-center space-x-1.5 text-xs font-bold text-sky-600 dark:text-sky-400 uppercase tracking-wider mb-1.5">
+                    <CheckCircle className="w-3.5 h-3.5 text-sky-500" />
+                    <span>Notre solution avec Salimata</span>
                   </div>
-                  <p className="text-sm text-sky-900 dark:text-sky-200 leading-relaxed font-semibold">
+                  <p className="text-sm sm:text-base text-sky-900 dark:text-sky-100 font-semibold leading-relaxed">
                     {item.solution}
                   </p>
                 </div>
               </div>
 
-              {/* Le Bénéfice Direct */}
-              <div className="pt-5 mt-5 border-t border-sky-100 dark:border-sky-800 flex items-center justify-between">
-                <div className="flex items-center space-x-2 text-xs font-bold text-sky-700 dark:text-sky-300">
-                  <TrendingUp className="w-4 h-4 text-sky-500 shrink-0" />
-                  <span>Bénéfice direct : {item.gain}</span>
-                </div>
+              {/* Le gain direct */}
+              <div className="pt-4 border-t border-sky-100 dark:border-sky-900/40 flex items-center space-x-2 text-xs font-semibold text-sky-600 dark:text-sky-400">
+                <TrendingUp className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                <span>Résultat : {item.gain}</span>
               </div>
             </div>
           ))}

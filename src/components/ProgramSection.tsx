@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { MANDATE_POLES } from "../data/mockData";
-import { CheckCircle2, Layers, Gauge, DollarSign, Wrench, Calendar, Coins, GraduationCap, PartyPopper, Briefcase, HeartHandshake, Lightbulb } from "lucide-react";
+import { CheckCircle2, Layers, Calendar, Coins, GraduationCap, PartyPopper, Briefcase, HeartHandshake, Lightbulb } from "lucide-react";
 
 export default function ProgramSection() {
   const [selectedPoleId, setSelectedPoleId] = useState<string>("academique");
@@ -37,8 +37,8 @@ export default function ProgramSection() {
           </p>
         </div>
 
-        {/* Sélecteur de Pôles (5 onglets Candy Blue & Blanc) */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3 mb-10">
+        {/* Sélecteur de Pôles (Pills épurées Candy Blue & Blanc) */}
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-10">
           {MANDATE_POLES.map((pole) => {
             const isSelected = pole.id === selectedPoleId;
             const Icon = poleIcons[pole.id] || Layers;
@@ -46,161 +46,80 @@ export default function ProgramSection() {
               <button
                 key={pole.id}
                 onClick={() => setSelectedPoleId(pole.id)}
-                className={`p-3.5 sm:p-4 rounded-2xl text-left border transition-all cursor-pointer ${
+                className={`inline-flex items-center space-x-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-sky-500 text-white border-sky-600 shadow-md shadow-sky-500/25 scale-[1.02]"
-                    : "bg-white dark:bg-slate-900 text-sky-700 dark:text-sky-300 border-sky-200 dark:border-sky-800 hover:border-sky-400 dark:hover:border-sky-600 hover:bg-sky-50 dark:hover:bg-slate-800"
+                    ? "bg-sky-500 text-white shadow-sm shadow-sky-500/20"
+                    : "bg-white dark:bg-slate-900 text-sky-800 dark:text-sky-200 border border-sky-100 dark:border-sky-900/60 hover:border-sky-300 dark:hover:border-sky-700 hover:bg-sky-50/50"
                 }`}
               >
-                <div className="flex items-center justify-between mb-2">
-                  <span className={`font-mono text-xs font-black uppercase ${isSelected ? "text-sky-100" : "text-sky-500 dark:text-sky-400"}`}>
-                    PÔLE {pole.number}
-                  </span>
-                  <Icon className={`w-4 h-4 ${isSelected ? "text-white" : "text-sky-500 dark:text-sky-400"}`} />
-                </div>
-                <div className="font-bold text-xs sm:text-sm leading-snug line-clamp-2">
-                  {pole.title}
-                </div>
+                <Icon className={`w-3.5 h-3.5 ${isSelected ? "text-white" : "text-sky-500"}`} />
+                <span>{pole.title}</span>
               </button>
             );
           })}
         </div>
 
-        {/* Fiche Détaillée du Pôle Sélectionné */}
-        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-sky-200 dark:border-sky-800 p-6 sm:p-10 shadow-xl shadow-sky-500/5 transition-colors">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Fiche Détaillée du Pôle - Disposition aérée et épurée */}
+        <div className="bg-white dark:bg-slate-900 rounded-3xl border border-sky-100 dark:border-sky-900/60 p-6 sm:p-10 transition-colors">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             
-            {/* Colonne Gauche : Synthèse & Jauges d'Audit */}
-            <div className="lg:col-span-5 space-y-6">
-              <div>
-                <div className="flex items-center space-x-2 text-xs font-black text-sky-500 dark:text-sky-400 tracking-wider uppercase mb-1">
-                  <span>Pôle {currentPole.number}</span>
-                  <span>•</span>
-                  <span>Mandat 2026-2027</span>
+            {/* Colonne Gauche : Synthèse & Cadre */}
+            <div className="lg:col-span-5 space-y-5">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-500 flex items-center justify-center shrink-0 border border-sky-100 dark:border-sky-900/60">
+                  <CurrentIcon className="w-5 h-5" />
                 </div>
-                <div className="flex items-center space-x-3 mt-1 mb-3">
-                  <div className="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-500 dark:text-sky-400 flex items-center justify-center shrink-0 border border-sky-200 dark:border-sky-800">
-                    <CurrentIcon className="w-5 h-5" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black text-sky-700 dark:text-sky-300">
+                <div>
+                  <span className="font-mono text-xs font-bold text-sky-500 dark:text-sky-400 uppercase tracking-wider block">
+                    Pôle {currentPole.number} • Mandat 2026-2027
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-sky-700 dark:text-sky-300">
                     {currentPole.title}
                   </h3>
                 </div>
-                <p className="text-sm sm:text-base text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
-                  {currentPole.summary}
-                </p>
               </div>
 
-              {/* Fiche d'Engagement Chiffrée */}
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3.5 bg-white dark:bg-slate-950 rounded-2xl border border-sky-200 dark:border-sky-800 shadow-xs">
-                  <div className="flex items-center space-x-1.5 text-xs text-sky-600 dark:text-sky-400 mb-1">
-                    <Coins className="w-3.5 h-3.5 text-sky-500" />
-                    <span>Budget Estimé</span>
-                  </div>
-                  <div className="text-sm font-bold text-sky-700 dark:text-sky-300 font-mono">
-                    {currentPole.budget}
-                  </div>
-                </div>
+              <p className="text-sm sm:text-base text-sky-800/80 dark:text-sky-200/90 leading-relaxed font-normal">
+                {currentPole.summary}
+              </p>
 
-                <div className="p-3.5 bg-white dark:bg-slate-950 rounded-2xl border border-sky-200 dark:border-sky-800 shadow-xs">
-                  <div className="flex items-center space-x-1.5 text-xs text-sky-600 dark:text-sky-400 mb-1">
-                    <Calendar className="w-3.5 h-3.5 text-sky-500" />
-                    <span>Calendrier</span>
-                  </div>
-                  <div className="text-sm font-bold text-sky-700 dark:text-sky-300 font-mono">
-                    {currentPole.deadline}
-                  </div>
+              {/* Repères opérationnels discrets */}
+              <div className="pt-4 border-t border-sky-100 dark:border-sky-900/40 flex flex-wrap gap-4 text-xs font-medium text-sky-700 dark:text-sky-300">
+                <div className="flex items-center space-x-1.5">
+                  <Coins className="w-3.5 h-3.5 text-sky-500" />
+                  <span>Budget : <strong className="font-semibold text-sky-900 dark:text-sky-100">{currentPole.budget}</strong></span>
+                </div>
+                <span className="text-sky-300 dark:text-sky-700">•</span>
+                <div className="flex items-center space-x-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-sky-500" />
+                  <span>Échéance : <strong className="font-semibold text-sky-900 dark:text-sky-100">{currentPole.deadline}</strong></span>
                 </div>
               </div>
-
-              {/* Jauges d'audit de faisabilité */}
-              <div className="bg-sky-50/50 dark:bg-slate-950 p-5 rounded-2xl border border-sky-200 dark:border-sky-800 space-y-4">
-                <div className="flex items-center justify-between text-xs font-bold text-sky-700 dark:text-sky-300 uppercase tracking-wider mb-2">
-                  <div className="flex items-center space-x-1.5">
-                    <Gauge className="w-4 h-4 text-sky-500" />
-                    <span>Audit de Faisabilité</span>
-                  </div>
-                  <span className="text-sky-700 dark:text-sky-300 bg-sky-100 dark:bg-sky-950 px-2.5 py-0.5 rounded-full border border-sky-300 dark:border-sky-800 font-mono text-[10px] font-bold">
-                    VALIDÉ
-                  </span>
-                </div>
-
-                {/* Faisabilité Technique */}
-                <div>
-                  <div className="flex justify-between text-xs font-semibold text-sky-700 dark:text-sky-300 mb-1.5">
-                    <span className="flex items-center space-x-1">
-                      <Wrench className="w-3.5 h-3.5 text-sky-500" />
-                      <span>Faisabilité Technique &amp; Logistique</span>
-                    </span>
-                    <span className="font-bold text-sky-600 dark:text-sky-400 font-mono">{currentPole.feasibilityTechnical}%</span>
-                  </div>
-                  <div className="w-full h-2.5 bg-white dark:bg-slate-800 rounded-full overflow-hidden border border-sky-200 dark:border-sky-800">
-                    <div
-                      className="h-full bg-sky-500 rounded-full transition-all duration-500"
-                      style={{ width: `${currentPole.feasibilityTechnical}%` }}
-                    />
-                  </div>
-                </div>
-
-                {/* Faisabilité Financière */}
-                <div>
-                  <div className="flex justify-between text-xs font-semibold text-sky-700 dark:text-sky-300 mb-1.5">
-                    <span className="flex items-center space-x-1">
-                      <DollarSign className="w-3.5 h-3.5 text-sky-500" />
-                      <span>Faisabilité Budgétaire &amp; Trésorerie</span>
-                    </span>
-                    <span className="font-bold text-sky-600 dark:text-sky-400 font-mono">{currentPole.feasibilityFinancial}%</span>
-                  </div>
-                  <div className="w-full h-2.5 bg-white dark:bg-slate-800 rounded-full overflow-hidden border border-sky-200 dark:border-sky-800">
-                    <div
-                      className="h-full bg-sky-400 rounded-full transition-all duration-500"
-                      style={{ width: `${currentPole.feasibilityFinancial}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-
             </div>
 
-            {/* Colonne Droite : Liste des Propositions Précises du Pôle */}
-            <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-sky-200 dark:border-sky-800">
-                <span className="text-xs font-black uppercase tracking-wider text-sky-600 dark:text-sky-400">
-                  Mesures d&apos;application immédiate
-                </span>
-                <span className="text-xs font-bold text-sky-700 dark:text-sky-300">
-                  {currentPole.proposals.length} engagements clés
-                </span>
+            {/* Colonne Droite : Engagements clés aérés */}
+            <div className="lg:col-span-7">
+              <div className="text-xs font-bold uppercase tracking-wider text-sky-500 dark:text-sky-400 mb-4 pb-2 border-b border-sky-100 dark:border-sky-900/40">
+                Engagements concrets pour ce pôle ({currentPole.proposals.length})
               </div>
 
-              <div className="space-y-3">
+              <div className="divide-y divide-sky-100 dark:divide-sky-900/40">
                 {currentPole.proposals.map((prop, idx) => (
-                  <div
-                    key={idx}
-                    className="p-4 sm:p-5 rounded-2xl bg-white dark:bg-slate-950 border border-sky-200 dark:border-sky-800 flex items-start space-x-3.5 hover:border-sky-400 dark:hover:border-sky-600 transition-colors shadow-xs"
-                  >
-                    <div className="w-7 h-7 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold border border-sky-200 dark:border-sky-800">
-                      0{idx + 1}
+                  <div key={idx} className="py-4 first:pt-0 last:pb-0 flex items-start space-x-3.5 group">
+                    <div className="w-6 h-6 rounded-lg bg-sky-50 dark:bg-sky-950 text-sky-500 flex items-center justify-center shrink-0 mt-0.5 font-mono text-xs font-bold border border-sky-100 dark:border-sky-900/60">
+                      {idx + 1}
                     </div>
                     <div>
-                      <div className="text-sm font-bold text-sky-800 dark:text-sky-200 leading-snug">
+                      <p className="text-sm sm:text-base font-semibold text-sky-800 dark:text-sky-200 leading-snug">
                         {prop}
-                      </div>
-                      <div className="mt-1 flex items-center space-x-2 text-[11px] text-sky-600 dark:text-sky-400 font-bold">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-sky-500" />
-                        <span>Inscrit au plan d&apos;action du mandat</span>
-                      </div>
+                      </p>
+                      <span className="inline-flex items-center space-x-1 text-xs text-sky-500 dark:text-sky-400 font-medium mt-1">
+                        <CheckCircle2 className="w-3 h-3 text-sky-400" />
+                        <span>Planifié et budgété</span>
+                      </span>
                     </div>
                   </div>
                 ))}
-              </div>
-
-              {/* Encadré d'engagement réciproque */}
-              <div className="p-4 rounded-2xl bg-sky-50 dark:bg-sky-950/60 border border-sky-200 dark:border-sky-800">
-                <p className="text-xs text-sky-800 dark:text-sky-200 leading-relaxed font-semibold">
-                  <strong>Engagement de suivi :</strong> Un état d&apos;avancement mensuel pour le pôle {currentPole.title} sera publié en direct pour permettre à chaque étudiant de vérifier la tenue des engagements.
-                </p>
               </div>
             </div>
 
