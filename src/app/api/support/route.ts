@@ -3,6 +3,8 @@ import { addSupportMember } from "../../../lib/db";
 import { isValidEmailFormat } from "../../../lib/validation";
 import { dispatchSupportNotifications } from "../../../lib/notifications";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
@@ -41,8 +43,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Envoi des alertes Telegram et Google Sheets en arrière-plan sans bloquer
-    void dispatchSupportNotifications({ name, email });
+    // Sur Vercel : attendre l'envoi de la notification avant la fin de l'exécution Lambda
+    await dispatchSupportNotifications({ name, email });
 
     return NextResponse.json({
       success: true,

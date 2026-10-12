@@ -145,7 +145,13 @@ async function ensureDbInitialized(): Promise<DatabaseSchema> {
     ideas: INITIAL_IDEAS.map((idea) => ({ ...idea })),
     support_members: [],
   };
-  await persistDb();
+  try {
+    await persistDb();
+  } catch (error) {
+    if (!process.env.VERCEL) {
+      console.warn("Erreur écriture initiale disque:", error);
+    }
+  }
   return memoryDb;
 }
 
@@ -272,6 +278,10 @@ export async function createIdea(input: {
     await persistDb();
     return { success: true, idea };
   } catch (error) {
+    if (process.env.VERCEL) {
+      console.warn("Avertissement: persistance locale non disponible sur Vercel serverless, continué en mémoire:", error);
+      return { success: true, idea };
+    }
     db.ideas.shift();
     console.error("Échec persistance de la proposition:", error);
     return { success: false, error: "Erreur d'écriture sur le disque de stockage persistant.", errorCode: "unavailable" };
@@ -317,6 +327,10 @@ export async function addSupportMember(
     await persistDb();
     return { success: true };
   } catch (error) {
+    if (process.env.VERCEL) {
+      console.warn("Avertissement: persistance locale non disponible sur Vercel serverless, continué en mémoire:", error);
+      return { success: true };
+    }
     db.support_members.pop();
     console.error("Échec persistance du soutien:", error);
     return { success: false, error: "Erreur d'écriture sur le disque de stockage persistant.", errorCode: "unavailable" };

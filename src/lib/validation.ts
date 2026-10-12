@@ -18,6 +18,7 @@ export function isValidEmailFormat(email: string): boolean {
  */
 export const DEFAULT_ESTABLISHMENT_DOMAINS = [
   "univ.tgmaster.com",
+  "tgmaster.com",
 ] as const;
 
 export function getAllowedCampusDomains(): string[] {

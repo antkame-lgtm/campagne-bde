@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { getAllIdeas, createIdea } from "../../../lib/db";
 import { dispatchIdeaNotifications } from "../../../lib/notifications";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   // Les suggestions sont désormais strictement confidentielles et ne sont plus exposées publiquement
   return NextResponse.json({
@@ -32,8 +34,8 @@ export async function POST(request: Request) {
       );
     }
 
-    // Envoi des alertes privées Telegram et Google Sheets en arrière-plan
-    void dispatchIdeaNotifications({
+    // Sur Vercel : attendre l'envoi de la notification avant la fin de l'exécution Lambda
+    await dispatchIdeaNotifications({
       title: result.idea.title,
       description: result.idea.description,
       category: result.idea.category,
