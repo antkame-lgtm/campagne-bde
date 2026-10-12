@@ -92,4 +92,42 @@ describe("Notifications Service Suite (Telegram & Google Sheets)", () => {
       await dispatchIdeaNotifications(samplePayload);
     });
   });
+
+  it("should send Telegram notification for new support member", async () => {
+    process.env.TELEGRAM_BOT_TOKEN = "test-token";
+    process.env.TELEGRAM_CHAT_ID = "123456789";
+
+    let interceptedUrl = "";
+    let interceptedBody: any = null;
+
+    global.fetch = (async (url: string | URL | Request, init?: RequestInit) => {
+      interceptedUrl = String(url);
+      interceptedBody = JSON.parse(String(init?.body));
+      return new Response(JSON.stringify({ ok: true }), { status: 200 });
+    }) as typeof fetch;
+
+    const { sendTelegramSupportNotification, dispatchSupportNotifications } = await import(
+      "../src/lib/notifications.ts"
+    );
+
+    const result = await sendTelegramSupportNotification({
+      name: "Jean Dupont",
+      email: "jean.dupont@univ.tgmaster.com",
+    });
+
+    assert.strictEqual(result, true);
+    assert.strictEqual(interceptedUrl, "https://api.telegram.org/bottest-token/sendMessage");
+    assert.strictEqual(interceptedBody.chat_id, "123456789");
+    assert.ok(interceptedBody.text.includes("COMITÉ DE SOUTIEN"));
+    assert.ok(interceptedBody.text.includes("Jean Dupont"));
+    assert.ok(interceptedBody.text.includes("jean.dupont@univ.tgmaster.com"));
+
+    // Also verify dispatchSupportNotifications doesn't throw
+    await assert.doesNotReject(async () => {
+      await dispatchSupportNotifications({
+        name: "Jean Dupont",
+        email: "jean.dupont@univ.tgmaster.com",
+      });
+    });
+  });
 });

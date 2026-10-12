@@ -3,19 +3,11 @@ import { getAllIdeas, createIdea } from "../../../lib/db";
 import { dispatchIdeaNotifications } from "../../../lib/notifications";
 
 export async function GET() {
-  try {
-    const ideas = await getAllIdeas();
-    return NextResponse.json({
-      success: true,
-      data: ideas,
-    });
-  } catch (err) {
-    console.error("GET /api/ideas error:", err);
-    return NextResponse.json(
-      { success: false, error: "Impossible de récupérer les propositions." },
-      { status: 500 }
-    );
-  }
+  // Les suggestions sont désormais strictement confidentielles et ne sont plus exposées publiquement
+  return NextResponse.json({
+    success: true,
+    data: [],
+  });
 }
 
 export async function POST(request: Request) {

@@ -12,10 +12,7 @@ import FeedbackSection from "../components/FeedbackSection";
 import CampaignInfoSection from "../components/CampaignInfoSection";
 import GallerySection from "../components/GallerySection";
 import Footer from "../components/Footer";
-import { INITIAL_IDEAS, type StudentIdea } from "../data/mockData";
-
 export default function Home() {
-  const [ideas, setIdeas] = useState<StudentIdea[]>(INITIAL_IDEAS);
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -31,18 +28,6 @@ export default function Home() {
     localStorage.removeItem("bde_voter_token");
     localStorage.removeItem("bde_voter_hash");
     localStorage.removeItem("student_email");
-
-    async function loadIdeas() {
-      try {
-        const response = await fetch("/api/ideas", { cache: "no-store" });
-        const data = await response.json();
-        if (response.ok && data.success && Array.isArray(data.data)) setIdeas(data.data);
-      } catch (error) {
-        console.warn("Échec du chargement des propositions :", error);
-      }
-    }
-
-    void loadIdeas();
   }, []);
 
   const handleToggleDark = () => {
@@ -52,10 +37,6 @@ export default function Home() {
       localStorage.setItem("theme", next ? "dark" : "light");
       return next;
     });
-  };
-
-  const handleAddIdea = (newIdea: StudentIdea) => {
-    setIdeas((previous) => [newIdea, ...previous.filter((idea) => idea.id !== newIdea.id)]);
   };
 
   const handleJoinSupport = async (name: string, email: string): Promise<{ success: boolean; error?: string }> => {
@@ -88,7 +69,7 @@ export default function Home() {
       <ProgramSection />
       <CalendarSection />
       <ImpactSection />
-      <FeedbackSection ideas={ideas} onAddIdea={handleAddIdea} />
+      <FeedbackSection />
       <CampaignInfoSection onJoinSupport={handleJoinSupport} />
       <GallerySection />
       <Footer />

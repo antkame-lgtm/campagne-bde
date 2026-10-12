@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { addSupportMember } from "../../../lib/db";
 import { isValidEmailFormat } from "../../../lib/validation";
+import { dispatchSupportNotifications } from "../../../lib/notifications";
 
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
@@ -39,6 +40,9 @@ export async function POST(request: Request) {
         { status: result.errorCode === "unavailable" ? 503 : 400 }
       );
     }
+
+    // Envoi des alertes Telegram et Google Sheets en arrière-plan sans bloquer
+    void dispatchSupportNotifications({ name, email });
 
     return NextResponse.json({
       success: true,
