@@ -50,7 +50,13 @@ export interface DatabaseSchema {
 }
 
 export function getDbPath(): string {
-  return process.env.DB_FILE || path.join(process.cwd(), "data", "db.json");
+  if (process.env.DB_FILE) {
+    return process.env.DB_FILE;
+  }
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join("/tmp", "db.json");
+  }
+  return path.join(process.cwd(), "data", "db.json");
 }
 
 let memoryDb: DatabaseSchema | null = null;
