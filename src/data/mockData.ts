@@ -17,10 +17,9 @@ export interface StudentIdea {
   description: string;
   category: "Idée de projet" | "Activité souhaitée" | "Difficulté rencontrée" | "Suggestion BDE" | "Infrastructures" | "Pédagogie" | "Cafétéria" | "Événements" | "Vie Pratique";
   author: string;
-  votes: number;
-  status: "Pris en compte" | "En étude" | "Intégré au programme";
+  status: "Pris en compte" | "En étude" | "Intégré au programme" | "Rejeté";
   createdAt: string;
-  hasVoted?: boolean;
+  isSample?: boolean;
 }
 
 export interface ImpactItem {
@@ -49,12 +48,11 @@ export const CANDIDATE_INFO = {
   title: "Candidate à la Présidence du BDE",
   slogan: "Une nouvelle énergie pour notre vie étudiante.",
   strongQuote: "Une communauté étudiante plus dynamique, plus ambitieuse et plus proche de ses étudiants.",
-  photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80",
-  bio: "Étudiante passionnée et investie depuis ma première année sur le campus, j'ai côtoyé les réalités de chaque filière. Des difficultés de révision aux manques de repères pour les stages, en passant par le besoin de vrais moments de cohésion, j'ai choisi de m'engager pour transformer ces constats en actions tangibles.",
+  bio: "Moi Salimata Diomande, aujourd’hui étudiante en Deuxième année à Tg Master University, je suis une jeune femme ambitieuse, engagée et animée par le désir d’apprendre et d’apporter ma contribution. Mon parcours m’a appris l’importance de la persévérance, du travail et de la détermination. Aujourd’hui, je souhaite mettre ces valeurs au service des étudiants en portant une vision nouvelle de la vie étudiante, fondée sur l’écoute, l’initiative et l’action.",
   whyRunning: [
-    "Parce que notre école a un potentiel immense qui mérite d'être réveillé par des projets concrets.",
-    "Parce qu'aucun étudiant ne doit se sentir isolé, que ce soit scolairement ou socialement.",
-    "Parce que vous méritez un bureau ouvert, transparent et disponible au quotidien, pas seulement pendant les campagnes."
+    "Parce que je suis convaincue que la vie étudiante peut aller au-delà des cours et des activités ponctuelles.",
+    "Pour valoriser les idées de chacun.",
+    "Pour faire de notre école un cadre où chaque étudiant se sent écouté, impliqué et fier d’appartenir à sa communauté."
   ],
   values: [
     { title: "Écoute", desc: "Être sur le terrain chaque semaine pour recueillir vos besoins sans filtre." },
@@ -64,7 +62,93 @@ export const CANDIDATE_INFO = {
   ]
 };
 
-// 2. Les 5 grands pôles du mandat (Strictement basés sur les indications de Salimata)
+export interface AnnualProgramItem {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  category: string;
+  period: string;
+  iconName: string;
+}
+
+// 2. Le Programme de l'année (Les 8 grands événements & temps forts)
+export const ANNUAL_PROGRAM: AnnualProgramItem[] = [
+  {
+    id: "tournoi-sport",
+    number: "01",
+    title: "Tournoi de sport",
+    description: "Compétitions sportives inter-promotions (football, basketball, etc.) pour développer l'esprit d'équipe, la cohésion et le bien-être par l'activité physique.",
+    category: "Sport & Vitalité",
+    period: "Novembre",
+    iconName: "Trophy"
+  },
+  {
+    id: "olympiades",
+    number: "02",
+    title: "Olympiades inter-écoles",
+    description: "Grandes olympiades avec plein de jeux divers (jeux de société, bornes d'arcade, défis variés) organisées en collaboration active avec une ou plusieurs autres écoles.",
+    category: "Inter-Écoles & Jeux",
+    period: "Janvier",
+    iconName: "Gamepad2"
+  },
+  {
+    id: "barbecue-party",
+    number: "03",
+    title: "Barbecue party",
+    description: "Moment de détente festif et rassembleur en plein air pour lancer l'année, briser la glace et réunir tous les étudiants autour d'un grand buffet chaleureux.",
+    category: "Intégration & Convivialité",
+    period: "Octobre",
+    iconName: "Flame"
+  },
+  {
+    id: "concours-cuisine",
+    number: "04",
+    title: "Concours de cuisine",
+    description: "Défi culinaire créatif mettant en valeur les talents et recettes des étudiants devant un jury d'étudiants et de professeurs, suivi d'une dégustation partagée.",
+    category: "Créativité & Partage",
+    period: "Novembre",
+    iconName: "UtensilsCrossed"
+  },
+  {
+    id: "panel",
+    number: "05",
+    title: "Un panel inspirant",
+    description: "Conférences et tables rondes interactives sur les thèmes qui passionnent les étudiants : investissement financier, Intelligence Artificielle et domaines d'avenir.",
+    category: "Avenir & Carrière",
+    period: "Décembre",
+    iconName: "Presentation"
+  },
+  {
+    id: "dons",
+    number: "06",
+    title: "Actions de dons",
+    description: "Collectes de vêtements, denrées et fournitures, accompagnées d'initiatives solidaires pour soutenir la communauté étudiante et des associations caritatives.",
+    category: "Solidarité & Impact",
+    period: "Novembre & Décembre",
+    iconName: "HeartHandshake"
+  },
+  {
+    id: "journees-a-theme",
+    number: "07",
+    title: "Journée à thème",
+    description: "Journées immersives et festives tout au long de l'année avec dress codes, animations culturelles, musique et ambiance conviviale sur le campus.",
+    category: "Vie de Campus",
+    period: "Tout au long de l'année",
+    iconName: "Sparkles"
+  },
+  {
+    id: "diners",
+    number: "08",
+    title: "Dîners de gala & promos",
+    description: "Grands dîners conviviaux et soirées festives pour fêter la fin des semestres, célébrer les réussites et renforcer les liens entre étudiants et promotions.",
+    category: "Célébration & Réseau",
+    period: "Décembre & Fin d'année",
+    iconName: "Utensils"
+  }
+];
+
+// Les 5 grands pôles du mandat (conservés pour la présentation AboutSection & ImpactSection)
 export const MANDATE_POLES = [
   {
     id: "academique",
@@ -126,42 +210,46 @@ export const MANDATE_POLES = [
   }
 ];
 
-// 3. Le Calendrier des actions (Strictement selon Salimata)
+// 3. Le Calendrier des actions (Cohérence totale avec le Programme de l'année)
 export const CALENDAR_SCHEDULE: CalendarMonth[] = [
   {
     month: "Octobre",
-    theme: "Intégration",
+    theme: "Intégration & Convivialité",
     badge: "Étape 01",
     events: [
-      "Accueil et intégration de l'ensemble des étudiants",
-      "Création de liens et cohésion inter-promotions"
+      "Accueil et intégration de l'ensemble des promotions",
+      "Grande Barbecue party de rentrée sur le campus",
+      "Première Journée à thème pour dynamiser la vie étudiante"
     ]
   },
   {
     month: "Novembre",
-    theme: "Mois de l’entrepreneuriat",
+    theme: "Sport, Talents & Solidarité",
     badge: "Étape 02",
     events: [
-      "Mois dédié à l'entrepreneuriat et aux initiatives",
-      "Ateliers et rencontres professionnelles"
+      "Grand Tournoi de sport inter-promotions",
+      "Concours de cuisine entre étudiants & dégustation collective",
+      "Lancement de la campagne de Dons et d'initiatives solidaires"
     ]
   },
   {
     month: "Décembre",
-    theme: "Événement étudiant",
+    theme: "Panel & Célébration",
     badge: "Étape 03",
     events: [
-      "Grand événement étudiant festif et rassembleur",
-      "Moment convivial avant la fin de semestre"
+      "Grand Panel d'experts : Investissement, IA & secteurs d'avenir",
+      "Grand Dîner festif de fin d'année avant les congés",
+      "Journée à thème festive de fin de premier semestre"
     ]
   },
   {
     month: "Janvier et suite",
-    theme: "Organisation collaborative",
+    theme: "Olympiades & Projets",
     badge: "Étape 04",
     events: [
-      "Organisation des actions suivantes avec les étudiants",
-      "Intégration des propositions récoltées dans la boîte à idées"
+      "Grandes Olympiades inter-écoles : arcade, jeux de société & défis variés",
+      "Dîners semestriels et nouvelles Journées à thème",
+      "Intégration continue des propositions récoltées dans la boîte à idées"
     ]
   }
 ];
@@ -205,129 +293,21 @@ export const IMPACT_COMPARISONS: ImpactItem[] = [
   }
 ];
 
-// 5. Photos avec les étudiants et au SAMI (Demandé à la fin par Salimata)
-export const CAMPUS_PHOTOS = [
-  {
-    title: "Échanges & rencontres sur le campus",
-    subtitle: "Avec les étudiants cette semaine",
-    tag: "Cette semaine",
-    imageUrl: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    title: "Au SAMI avec vous",
-    subtitle: "Moments partagés & discussions libres",
-    tag: "Au SAMI",
-    imageUrl: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    title: "Mobilisation & énergie collective",
-    subtitle: "À l'écoute de chaque promotion",
-    tag: "Sur le terrain",
-    imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80"
-  }
-];
+// 5. Suggestions d'inspiration pour la boîte à idées (vide par défaut)
+export const INSPIRATION_QUESTIONS: Array<{ category: string; examples: string[] }> = [];
 
-// 5. Suggestions d'inspiration pour le questionnaire
-export const INSPIRATION_QUESTIONS = [
-  {
-    category: "Idée de projet",
-    examples: [
-      "Créer un podcast étudiant sur la vie de l'école et les stages",
-      "Installer un espace détente avec canapés et prises de charge rapide",
-      "Organiser un hackathon créatif de 24h avec des entreprises partenaires"
-    ]
-  },
-  {
-    category: "Activité souhaitée",
-    examples: [
-      "Une soirée quiz géant / blind test inter-promotions",
-      "Un tournoi e-sport officiel (FIFA, League of Legends, Mario Kart)",
-      "Des sorties culturelles et tarif réduit pour les théâtres/cinémas"
-    ]
-  },
-  {
-    category: "Difficulté rencontrée",
-    examples: [
-      "Besoin de soutien en mathématiques ou en programmation",
-      "Micro-ondes et espaces déjeuner saturés le midi",
-      "Manque d'informations claires sur les conventions de stage"
-    ]
-  },
-  {
-    category: "Suggestion BDE",
-    examples: [
-      "Publier le compte-rendu financier du BDE chaque trimestre",
-      "Mettre en place une boîte à livres collaborative dans le hall",
-      "Négocier des réductions avec les restaurants autour du campus"
-    ]
-  }
-];
-
-// 6. Idées citoyennes initiales
-export const INITIAL_IDEAS: StudentIdea[] = [
-  {
-    id: "idea-1",
-    title: "Création d'une banque d'annales et fiches de révision en ligne",
-    description: "Centraliser les sujets d'examens des 3 dernières années avec corrigés collaboratifs et fiches mémo par matière.",
-    category: "Pédagogie",
-    author: "Alexandre",
-    votes: 84,
-    status: "Intégré au programme",
-    createdAt: "Il y a 2 jours",
-    hasVoted: false,
-  },
-  {
-    id: "idea-2",
-    title: "Permanence tutorat et entraide méthodologique le jeudi soir",
-    description: "Permettre aux étudiants de Master de tutorer les premières années sur les matières clés en échange de crédits ou valorisation associative.",
-    category: "Idée de projet",
-    author: "Inès",
-    votes: 62,
-    status: "En étude",
-    createdAt: "Il y a 3 jours",
-    hasVoted: false,
-  },
-  {
-    id: "idea-3",
-    title: "Grand tournoi e-sport & esport caritatif inter-écoles",
-    description: "Un week-end de compétitions sur écran géant au foyer, ouvert aux spectateurs avec buvette solidaire.",
-    category: "Activité souhaitée",
-    author: "Camille",
-    votes: 49,
-    status: "Pris en compte",
-    createdAt: "Hier",
-    hasVoted: false,
-  },
-  {
-    id: "idea-4",
-    title: "Publication trimestrielle du budget et des partenariats BDE",
-    description: "Transparence complète sur les entrées et sorties d'argent du bureau des étudiants pour restaurer la confiance de tous.",
-    category: "Suggestion BDE",
-    author: "Thomas",
-    votes: 91,
-    status: "Intégré au programme",
-    createdAt: "Il y a 4 jours",
-    hasVoted: false,
-  }
-];
+// 6. Idées citoyennes initiales (vide par défaut, alimenté par les dépôts réels des étudiants)
+export const INITIAL_IDEAS: StudentIdea[] = [];
 
 // 7. FAQ Officielle
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    question: "Qui peut voter pour la liste de Salimata ?",
-    answer: "Tous les étudiants inscrits à l'école pour l'année universitaire 2026-2027 ont le droit de vote, quelle que soit leur filière ou année d'étude."
-  },
-  {
-    question: "Comment voter le jour du scrutin ?",
-    answer: "Le vote a lieu le vendredi 23 octobre 2026 de 08h00 à 18h00, soit au bureau physique dans le hall de l'école avec votre carte étudiante, soit via le portail électronique sécurisé envoyé par email."
-  },
-  {
     question: "Comment puis-je rejoindre l'équipe de campagne de Salimata ?",
-    answer: "Remplissez le formulaire de ralliement en bas de page ou écrivez-nous directement sur le groupe WhatsApp officiel pour participer aux actions et aux permanences."
+    answer: "Remplissez le formulaire du comité de soutien ou écrivez-nous sur le groupe WhatsApp pour participer aux actions et aux permanences."
   },
   {
-    question: "Que se passe-t-il après avoir soumis une idée sur le site ?",
-    answer: "Votre proposition est enregistrée et ouverte au vote des autres étudiants. Toute idée atteignant 50 votes est obligatoirement soumise à l'ordre du jour du bureau pour étude de faisabilité sous 14 jours."
+    question: "Comment les propositions sont-elles publiées ?",
+    answer: "Une adresse email de l'établissement (@univ.tgmaster.com) est requise pour déposer. Les propositions publiées restent visibles dans la boîte à idées."
   }
 ];
 

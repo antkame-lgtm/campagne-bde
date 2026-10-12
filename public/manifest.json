@@ -1,11 +1,11 @@
 {
-  "name": "Campus Uni & Connecté — BDE 2026",
-  "short_name": "BDE 2026",
+  "name": "Salimata • BDE 2026 — Une nouvelle énergie étudiante",
+  "short_name": "Salimata 2026",
   "description": "Plateforme web participative officielle de campagne et de mandat pour la présidence du Bureau des Étudiants.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F8FAFC",
-  "theme_color": "#1E3A8A",
+  "theme_color": "#03224c",
   "orientation": "portrait",
   "icons": [
     {

@@ -3,24 +3,53 @@
 
 @variant dark (&:where(.dark, .dark *));
 
-@theme {
-  --color-candy-blue: #0284c7;
-  --color-candy-blue-vibrant: #0ea5e9;
-  --color-candy-blue-bright: #38bdf8;
-  --color-candy-blue-dark: #0369a1;
-  --color-candy-blue-deep: #075985;
-  --color-candy-blue-soft: #f0f9ff;
-  --color-candy-blue-tint: #e0f2fe;
-}
+/* ========================================================
+   IDENTITÉ VISUELLE OFFICIELLE : BLEU NUIT (#03224c)
+   TG Master University • Nexus 360° • Salimata 2026
+   ======================================================== */
 
 :root {
-  --primary: #0284c7;
-  --primary-vibrant: #0ea5e9;
-  --primary-dark: #0369a1;
-  --candy-tint: #e0f2fe;
-  --candy-soft: #f0f9ff;
-  --surface: #ffffff;
-  --text-main: #0369a1;
+  /* Palette Bleu Nuit en mode clair */
+  --color-sky-50: #f1f5f9;
+  --color-sky-100: #e2e8f0;
+  --color-sky-200: #cbd5e1;
+  --color-sky-300: #94a3b8;
+  --color-sky-400: #64748b;
+  --color-sky-500: #0f4c9c;
+  --color-sky-600: #073570;
+  --color-sky-700: #03224c;
+  --color-sky-800: #021a3b;
+  --color-sky-900: #01122a;
+  --color-sky-950: #000a18;
+
+  --primary: #03224c;
+  --primary-vibrant: #0f4c9c;
+  --primary-dark: #021a3b;
+  --candy-tint: #e2e8f0;
+  --candy-soft: #f1f5f9;
+  --text-main: #03224c;
+}
+
+.dark {
+  /* Palette Bleu Nuit en mode sombre (Midnight Navy) */
+  --color-sky-50: #041833;
+  --color-sky-100: #082752;
+  --color-sky-200: #0e3c79;
+  --color-sky-300: #93c5fd;
+  --color-sky-400: #60a5fa;
+  --color-sky-500: #3b82f6;
+  --color-sky-600: #2563eb;
+  --color-sky-700: #93c5fd;
+  --color-sky-800: #bfdbfe;
+  --color-sky-900: #dbeafe;
+  --color-sky-950: #eff6ff;
+
+  --primary: #60a5fa;
+  --primary-vibrant: #3b82f6;
+  --primary-dark: #93c5fd;
+  --candy-tint: #082752;
+  --candy-soft: #041833;
+  --text-main: #f1f5f9;
 }
 
 html {
@@ -30,32 +59,32 @@ html {
 }
 
 html.dark {
-  background-color: #030712;
+  background-color: #020c1b;
 }
 
 h1, h2, h3, .font-display {
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, sans-serif;
   letter-spacing: -0.025em;
-  color: #0284c7;
+  color: var(--color-sky-700, #03224c);
 }
 
 .dark h1, .dark h2, .dark h3, .dark .font-display {
-  color: #38bdf8;
+  color: var(--color-sky-300, #93c5fd);
 }
 
 body {
   background-color: #ffffff;
-  color: #0369a1;
+  color: var(--color-sky-800, #021a3b);
   overflow-x: hidden;
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .dark body {
-  background-color: #030712;
-  color: #e0f2fe;
+  background-color: #020c1b;
+  color: var(--color-sky-800, #bfdbfe);
 }
 
-/* Scrollbar Candy Blue */
+/* Scrollbar adaptée au Bleu Nuit */
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -63,18 +92,18 @@ body {
   background: #ffffff;
 }
 .dark ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #020c1b;
 }
 ::-webkit-scrollbar-thumb {
-  background: #7dd3fc;
+  background: var(--color-sky-300, #94a3b8);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #0284c7;
+  background: var(--color-sky-700, #03224c);
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #0284c7;
+  background: var(--color-sky-600, #2563eb);
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #38bdf8;
+  background: var(--color-sky-400, #60a5fa);
 }

@@ -1,9 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  allowedDevOrigins: ["*.trycloudflare.com", "localhost:3000"],
   turbopack: {
     rules: {
       "*.css": {

@@ -5,8 +5,6 @@ import {
   isInstitutionalEmail,
   sanitizeText,
   validateIdeaSubmission,
-  validateVoteSubmission,
-  ALLOWED_CATEGORIES,
 } from "../src/lib/validation.ts";
 
 describe("Validation Suite", () => {
@@ -27,17 +25,16 @@ describe("Validation Suite", () => {
   });
 
   describe("isInstitutionalEmail", () => {
-    it("should recognize institutional educational domains", () => {
-      assert.equal(isInstitutionalEmail("alex@ecole.fr"), true);
-      assert.equal(isInstitutionalEmail("alex@ingenieur.ecole.fr"), true);
-      assert.equal(isInstitutionalEmail("alex@univ-lyon1.fr"), true);
-      assert.equal(isInstitutionalEmail("alex@universite-paris.fr"), true);
-      assert.equal(isInstitutionalEmail("alex@mit.edu"), true);
-      assert.equal(isInstitutionalEmail("alex@oxford.ac.uk"), true);
-      assert.equal(isInstitutionalEmail("alex@student.polytechnique.fr"), true);
+    it("should recognize registered establishment domains", () => {
+      assert.equal(isInstitutionalEmail("alex@univ.tgmaster.com"), true);
+      assert.equal(isInstitutionalEmail("alex@student.univ.tgmaster.com"), true);
     });
 
-    it("should reject generic personal or disposable email domains", () => {
+    it("should reject other university or generic external domains", () => {
+      assert.equal(isInstitutionalEmail("alex@univ-lyon1.fr"), false);
+      assert.equal(isInstitutionalEmail("alex@universite-paris.fr"), false);
+      assert.equal(isInstitutionalEmail("alex@mit.edu"), false);
+      assert.equal(isInstitutionalEmail("alex@oxford.ac.uk"), false);
       assert.equal(isInstitutionalEmail("troll@gmail.com"), false);
       assert.equal(isInstitutionalEmail("spammer@tempmail.org"), false);
       assert.equal(isInstitutionalEmail("fake@yahoo.fr"), false);
@@ -71,7 +68,7 @@ describe("Validation Suite", () => {
         title: "Café",
         description: "Mettre du bon café bio en salle commune",
         category: "Vie de campus",
-        email: "etudiant@ecole.fr",
+        email: "etudiant@univ.tgmaster.com",
       });
       assert.equal(result.valid, false);
       assert.match(result.error!, /titre/i);
@@ -82,7 +79,7 @@ describe("Validation Suite", () => {
         title: "Nouvelle imprimante",
         description: "Trop court",
         category: "Vie de campus",
-        email: "etudiant@ecole.fr",
+        email: "etudiant@univ.tgmaster.com",
       });
       assert.equal(result.valid, false);
       assert.match(result.error!, /description/i);
@@ -93,7 +90,7 @@ describe("Validation Suite", () => {
         title: "Tournoi e-sport campus",
         description: "Organiser un grand tournoi de rentrée sur console",
         category: "Catégorie Inexistante",
-        email: "etudiant@ecole.fr",
+        email: "etudiant@univ.tgmaster.com",
       });
       assert.equal(result.valid, false);
       assert.match(result.error!, /catégorie/i);
@@ -105,13 +102,13 @@ describe("Validation Suite", () => {
         description: "Partenariat avec des producteurs locaux pour distribuer des paniers de fruits et légumes à tarif préférentiel.",
         category: "Vie Pratique",
         author: "Sarah",
-        email: "SARAH@ECOLE.FR",
+        email: "SARAH@UNIV.TGMASTER.COM",
         isAnonymous: false,
       });
 
       assert.equal(result.valid, true);
       assert.equal(result.sanitized?.title, "Mise en place de paniers bio le jeudi");
-      assert.equal(result.sanitized?.email, "sarah@ecole.fr");
+      assert.equal(result.sanitized?.email, "sarah@univ.tgmaster.com");
       assert.equal(result.sanitized?.author, "Sarah");
     });
 
@@ -121,33 +118,24 @@ describe("Validation Suite", () => {
         description: "Installer une bibliothèque collaborative libre service dans le hall principal.",
         category: "Infrastructures",
         author: "Lucas",
-        email: "lucas@ecole.fr",
+        email: "lucas@univ.tgmaster.com",
         isAnonymous: true,
       });
 
       assert.equal(result.valid, true);
       assert.equal(result.sanitized?.author, "Anonyme");
     });
-  });
 
-  describe("validateVoteSubmission", () => {
-    it("should reject missing ideaId", () => {
-      const res = validateVoteSubmission({ ideaId: "", email: "test@ecole.fr" });
-      assert.equal(res.valid, false);
-      assert.match(res.error!, /identifiant/i);
-    });
-
-    it("should reject malformed email", () => {
-      const res = validateVoteSubmission({ ideaId: "idea-123", email: "bademail" });
-      assert.equal(res.valid, false);
-      assert.match(res.error!, /email/i);
-    });
-
-    it("should accept valid vote submission", () => {
-      const res = validateVoteSubmission({ ideaId: "idea-123", email: "student@ecole.fr" });
-      assert.equal(res.valid, true);
-      assert.equal(res.ideaId, "idea-123");
-      assert.equal(res.email, "student@ecole.fr");
+    it("should reject non-institutional email for idea submission", () => {
+      const result = validateIdeaSubmission({
+        title: "Proposition de test",
+        description: "Description de plus de 15 caractères valide",
+        category: "Suggestion BDE",
+        email: "spammer@gmail.com",
+      });
+      assert.equal(result.valid, false);
+      assert.match(result.error!, /école|institutionnelle|établissement/i);
     });
   });
+
 });

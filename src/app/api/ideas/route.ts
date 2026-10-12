@@ -1,59 +1,68 @@
 import { NextResponse } from "next/server";
-import { INITIAL_IDEAS, StudentIdea } from "../../../data/mockData";
-import { validateIdeaSubmission } from "../../../lib/validation";
-import { hashStudentEmail } from "../../../lib/security";
-
-// Registre serveur en mémoire (fallback immédiat sans dépendre de Supabase distant)
-let serverIdeas: StudentIdea[] = [...INITIAL_IDEAS];
+import { getAllIdeas, createIdea } from "../../../lib/db";
+import { dispatchIdeaNotifications } from "../../../lib/notifications";
 
 export async function GET() {
-  return NextResponse.json({
-    success: true,
-    data: serverIdeas,
-  });
+  try {
+    const ideas = await getAllIdeas();
+    return NextResponse.json({
+      success: true,
+      data: ideas,
+    });
+  } catch (err) {
+    console.error("GET /api/ideas error:", err);
+    return NextResponse.json(
+      { success: false, error: "Impossible de récupérer les propositions." },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: Request) {
+  let body: Record<string, unknown>;
   try {
-    const body = await request.json();
-    const validation = validateIdeaSubmission(body);
+    const parsed: unknown = await request.json();
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return NextResponse.json({ success: false, error: "Requête invalide." }, { status: 400 });
+    }
+    body = parsed as Record<string, unknown>;
+  } catch {
+    return NextResponse.json({ success: false, error: "Format de requête invalide." }, { status: 400 });
+  }
 
-    if (!validation.valid || !validation.sanitized) {
+  try {
+    const result = await createIdea(body);
+
+    if (!result.success || !result.idea) {
       return NextResponse.json(
-        { success: false, error: validation.error },
-        { status: 400 }
+        { success: false, error: result.error || "Échec de validation de la proposition." },
+        { status: result.errorCode === "unavailable" ? 503 : 400 }
       );
     }
 
-    const { title, description, category, author, email } = validation.sanitized;
-    const emailHash = hashStudentEmail(email);
-
-    const newIdea: StudentIdea = {
-      id: `idea-${Date.now()}-${emailHash.slice(0, 6)}`,
-      title,
-      description,
-      category,
-      author,
-      votes: 1,
-      status: "Pris en compte",
-      createdAt: "À l'instant",
-      hasVoted: true,
-    };
-
-    serverIdeas = [newIdea, ...serverIdeas];
+    // Envoi des alertes privées Telegram et Google Sheets en arrière-plan
+    void dispatchIdeaNotifications({
+      title: result.idea.title,
+      description: result.idea.description,
+      category: result.idea.category,
+      author: result.idea.author,
+      email: typeof body.email === "string" ? body.email : undefined,
+      isAnonymous: Boolean(body.isAnonymous),
+    });
 
     return NextResponse.json(
       {
         success: true,
         message: "Proposition enregistrée avec succès !",
-        data: newIdea,
+        data: result.idea,
       },
       { status: 201 }
     );
-  } catch {
+  } catch (err) {
+    console.error("POST /api/ideas error:", err);
     return NextResponse.json(
-      { success: false, error: "Format de requête invalide." },
-      { status: 400 }
+      { success: false, error: "Service d'enregistrement momentanément indisponible." },
+      { status: 503 }
     );
   }
 }

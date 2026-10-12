@@ -1,55 +1,53 @@
 import test, { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { hashStudentEmail, createVoteKey } from "../src/lib/security.ts";
+import {
+  hashSubmissionEmail,
+  createIdeaSubmissionToken,
+  verifyIdeaSubmissionToken,
+  extractAndVerifyIdeaSubmissionToken,
+} from "../src/lib/security.ts";
 
-describe("Security & Anti-Fraud Suite", () => {
-  it("hashStudentEmail should return a 64-character SHA-256 hex string", () => {
-    const hash = hashStudentEmail("lea.martin@ecole.fr");
-    assert.equal(typeof hash, "string");
+describe("Security & proposal submission suite", () => {
+  it("hashes addresses consistently without exposing their text", () => {
+    const hash = hashSubmissionEmail("lea.martin@ecole.fr");
     assert.equal(hash.length, 64);
     assert.match(hash, /^[0-9a-f]{64}$/);
-  });
-
-  it("hashStudentEmail must be strictly deterministic and case-insensitive", () => {
-    const hash1 = hashStudentEmail("etudiant@ecole.fr");
-    const hash2 = hashStudentEmail("ETUDIANT@ECOLE.FR");
-    const hash3 = hashStudentEmail("  etudiant@ecole.fr  ");
-
-    assert.equal(hash1, hash2, "Capitalization must not change the hash");
-    assert.equal(hash1, hash3, "Whitespace padding must be trimmed");
-  });
-
-  it("hashStudentEmail must produce distinct hashes for different students", () => {
-    const hashA = hashStudentEmail("alice@ecole.fr");
-    const hashB = hashStudentEmail("bob@ecole.fr");
-
-    assert.notEqual(hashA, hashB, "Different emails must generate distinct voter signatures");
-  });
-
-  it("hashStudentEmail must not leak plain email characters", () => {
-    const email = "secret.student@ecole.fr";
-    const hash = hashStudentEmail(email);
-
-    assert.equal(hash.includes("secret"), false);
-    assert.equal(hash.includes("student"), false);
+    assert.equal(hash, hashSubmissionEmail(" LEA.MARTIN@ECOLE.FR "));
+    assert.notEqual(hash, hashSubmissionEmail("another@ecole.fr"));
+    assert.equal(hash.includes("lea"), false);
     assert.equal(hash.includes("@"), false);
   });
 
-  it("hashStudentEmail must throw an error on empty or invalid input", () => {
-    assert.throws(() => hashStudentEmail(""), /Invalid email/);
-    // @ts-expect-error test invalid type
-    assert.throws(() => hashStudentEmail(null), /Invalid email/);
-    // @ts-expect-error test invalid type
-    assert.throws(() => hashStudentEmail(undefined), /Invalid email/);
+  it("uses the supplied salt when hashing an address", () => {
+    const address = "etudiant@ecole.fr";
+    assert.notEqual(hashSubmissionEmail(address, "saltA"), hashSubmissionEmail(address, "saltB"));
   });
 
-  it("createVoteKey should create an unambiguous composite key", () => {
-    const key = createVoteKey("idea-101", "abc123hash");
-    assert.equal(key, "idea-101:abc123hash");
+  it("creates and verifies a short-lived proposal submission token", () => {
+    const emailHash = hashSubmissionEmail("lea@ecole.fr");
+    const token = createIdeaSubmissionToken(emailHash);
+
+    assert.equal(token.split(".").length, 3);
+    assert.equal(verifyIdeaSubmissionToken(emailHash, token), true);
+    assert.equal(extractAndVerifyIdeaSubmissionToken(token), emailHash);
   });
 
-  it("createVoteKey should throw on missing components", () => {
-    assert.throws(() => createVoteKey("", "abc123hash"));
-    assert.throws(() => createVoteKey("idea-101", ""));
+  it("rejects altered tokens and tokens for another address", () => {
+    const emailHash = hashSubmissionEmail("lea@ecole.fr");
+    const token = createIdeaSubmissionToken(emailHash);
+    const tampered = `${token.slice(0, -4)}ffff`;
+
+    assert.equal(verifyIdeaSubmissionToken(emailHash, tampered), false);
+    assert.equal(verifyIdeaSubmissionToken(hashSubmissionEmail("noah@ecole.fr"), token), false);
+    assert.equal(extractAndVerifyIdeaSubmissionToken(tampered), null);
+    assert.equal(extractAndVerifyIdeaSubmissionToken("invalid.token"), null);
+  });
+
+  it("rejects malformed hashing input", () => {
+    assert.throws(() => hashSubmissionEmail(""), /Invalid email/);
+    // @ts-expect-error test invalid type
+    assert.throws(() => hashSubmissionEmail(null), /Invalid email/);
+    // @ts-expect-error test invalid type
+    assert.throws(() => hashSubmissionEmail(undefined), /Invalid email/);
   });
 });

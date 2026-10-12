@@ -12,38 +12,36 @@ export function isValidEmailFormat(email: string): boolean {
 }
 
 /**
- * Institutional patterns recognized:
- * - .edu
- * - .ac.* (e.g. ac.uk)
- * - ecole.* / *.ecole.*
- * - univ-*.*
- * - universite.*
- * - student.* / etud.*
+ * Domaines institutionnels autorisés pour déposer une proposition :
+ * Par défaut : ecole.fr et ses sous-domaines officiels (student.ecole.fr, ingenieur.ecole.fr, etc.)
+ * Configurable via la variable d'environnement ALLOWED_EMAIL_DOMAINS (séparés par des virgules).
  */
-const DEFAULT_INSTITUTIONAL_PATTERNS = [
-  /\.edu$/i,
-  /\.ac\.[a-z]{2,}$/i,
-  /(^|\.)ecole(-[a-z0-9-]+)?\.[a-z]+$/i,
-  /(^|\.)univ(-[a-z0-9-]+)?\.[a-z]+$/i,
-  /(^|\.)universite(-[a-z0-9-]+)?\.[a-z]+$/i,
-  /(^|\.)polytechnique(-[a-z0-9-]+)?\.[a-z]+$/i,
-  /(^|\.)campus(-[a-z0-9-]+)?\.[a-z]+$/i,
-  /(^|\.)student\.[a-z.]+/i,
-  /(^|\.)etud\.[a-z.]+/i,
-];
+export const DEFAULT_ESTABLISHMENT_DOMAINS = [
+  "univ.tgmaster.com",
+] as const;
+
+export function getAllowedCampusDomains(): string[] {
+  if (process.env.ALLOWED_EMAIL_DOMAINS) {
+    return process.env.ALLOWED_EMAIL_DOMAINS.split(",")
+      .map((d) => d.trim().toLowerCase())
+      .filter(Boolean);
+  }
+  return [...DEFAULT_ESTABLISHMENT_DOMAINS];
+}
 
 export function isInstitutionalEmail(email: string, allowedCustomDomains?: string[]): boolean {
   if (!isValidEmailFormat(email)) return false;
   const domain = email.trim().toLowerCase().split("@")[1];
   if (!domain) return false;
 
-  if (allowedCustomDomains && allowedCustomDomains.length > 0) {
-    return allowedCustomDomains.some(
-      (allowed) => domain === allowed.toLowerCase() || domain.endsWith("." + allowed.toLowerCase())
-    );
-  }
+  const allowedList =
+    allowedCustomDomains !== undefined
+      ? allowedCustomDomains.map((d) => d.trim().toLowerCase())
+      : getAllowedCampusDomains();
 
-  return DEFAULT_INSTITUTIONAL_PATTERNS.some((pattern) => pattern.test(domain));
+  return allowedList.some(
+    (allowed) => domain === allowed || domain.endsWith("." + allowed)
+  );
 }
 
 /**
@@ -83,23 +81,33 @@ export interface IdeaValidationResult {
   };
 }
 
-export function validateIdeaSubmission(input: {
+type IdeaSubmissionInput = {
   title?: unknown;
   description?: unknown;
   category?: unknown;
   author?: unknown;
   email?: unknown;
   isAnonymous?: unknown;
-}): IdeaValidationResult {
-  const title = typeof input.title === "string" ? sanitizeText(input.title) : "";
-  const description = typeof input.description === "string" ? sanitizeText(input.description) : "";
+};
+
+/**
+ * Redacts any email addresses from public text fields to preserve confidentiality
+ */
+export function maskEmailsInText(text: string): string {
+  if (!text || typeof text !== "string") return "";
+  return text.replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, "[email masqué]");
+}
+
+function validateIdea(input: IdeaSubmissionInput, requireInstitutionalEmail: boolean): IdeaValidationResult {
+  const title = typeof input.title === "string" ? maskEmailsInText(sanitizeText(input.title)) : "";
+  const description = typeof input.description === "string" ? maskEmailsInText(sanitizeText(input.description)) : "";
   const categoryRaw = typeof input.category === "string" ? sanitizeText(input.category) : "";
   const email = typeof input.email === "string" ? input.email.trim().toLowerCase() : "";
-  const isAnon = Boolean(input.isAnonymous);
+  const isAnon = input.isAnonymous === true;
   const author = isAnon
     ? "Anonyme"
     : typeof input.author === "string" && input.author.trim()
-    ? sanitizeText(input.author)
+    ? maskEmailsInText(sanitizeText(input.author))
     : "Étudiant";
 
   if (!title || title.length < 5) {
@@ -118,6 +126,13 @@ export function validateIdeaSubmission(input: {
 
   if (!isValidEmailFormat(email)) {
     return { valid: false, error: "Format d'adresse email invalide." };
+  }
+
+  if (requireInstitutionalEmail && !isInstitutionalEmail(email)) {
+    return {
+      valid: false,
+      error: "Adresse email de l'établissement requise. Vérifiez la configuration des domaines autorisés.",
+    };
   }
 
   // Must match one of allowed categories
@@ -141,20 +156,11 @@ export function validateIdeaSubmission(input: {
   };
 }
 
-export function validateVoteSubmission(input: {
-  ideaId?: unknown;
-  email?: unknown;
-}): { valid: boolean; error?: string; ideaId?: string; email?: string } {
-  const ideaId = typeof input.ideaId === "string" ? input.ideaId.trim() : "";
-  const email = typeof input.email === "string" ? input.email.trim().toLowerCase() : "";
+export function validateIdeaSubmission(input: IdeaSubmissionInput): IdeaValidationResult {
+  return validateIdea(input, true);
+}
 
-  if (!ideaId) {
-    return { valid: false, error: "Identifiant de proposition manquant." };
-  }
-
-  if (!isValidEmailFormat(email)) {
-    return { valid: false, error: "Format d'adresse email invalide pour certifier le vote." };
-  }
-
-  return { valid: true, ideaId, email };
+/** Client-side draft validation. Eligibility is checked by the server, which owns the domain config. */
+export function validateIdeaDraft(input: IdeaSubmissionInput): IdeaValidationResult {
+  return validateIdea(input, false);
 }

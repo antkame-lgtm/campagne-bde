@@ -23,8 +23,8 @@ export default function VisionSection() {
       icon: HeartHandshake,
       num: "03",
       title: "Une entraide plus solidaire",
-      desc: "Prendre soin de chacun au quotidien. Zéro étudiant laissé seul face aux difficultés, avec une véritable écoute et des actions sociales bienveillantes.",
-      highlight: "Solidarité & bien-être"
+      desc: "Personne ne doit être laissé de côté. Nous mettons l'accent sur le bien-être, le soutien fraternel, les actions de dons et l'écoute active des besoins de chacun.",
+      highlight: "Solidarité active"
     },
     {
       icon: ShieldCheck,
@@ -36,16 +36,16 @@ export default function VisionSection() {
   ];
 
   return (
-    <section id="vision" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-200 dark:border-sky-900/60 transition-colors duration-200">
+    <section id="vision" className="py-16 sm:py-24 bg-white dark:bg-[#020c1b] border-b border-sky-200/80 dark:border-sky-900/60 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête de section */}
         <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200 dark:border-sky-800">
-            <Compass className="w-3.5 h-3.5 text-sky-500" />
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200 dark:border-sky-800 shadow-2xs">
+            <Compass className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             <span>Section 3 • Notre vision</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 dark:text-sky-400 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-700 dark:text-sky-300 tracking-tight [text-wrap:balance]">
             Ce que nous voulons que la vie étudiante devienne
           </h2>
           <p className="mt-4 text-base sm:text-lg text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
@@ -54,24 +54,26 @@ export default function VisionSection() {
           </p>
         </div>
 
-        {/* 4 Piliers de la Vision - Disposition aérée et épurée */}
+        {/* 4 Piliers de la Vision - Cartes raffinées avec micro-lift */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {visionPillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
               <div
                 key={pillar.num}
-                className="group relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-slate-900 border border-sky-100 dark:border-sky-900/60 hover:border-sky-300 dark:hover:border-sky-700 transition-all duration-200 flex flex-col justify-between"
+                className="group relative p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#041833]/80 border border-sky-200/80 dark:border-sky-800/80 hover:border-sky-400 dark:hover:border-sky-600 shadow-xs hover:shadow-xl hover:shadow-sky-900/5 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <span className="font-mono text-xl font-black text-sky-400 dark:text-sky-500">
+                    <span className="font-mono text-xl font-black text-sky-600 dark:text-sky-400">
                       {pillar.num}
                     </span>
-                    <Icon className="w-5 h-5 text-sky-500/80 group-hover:text-sky-500 transition-colors" />
+                    <div className="w-9 h-9 rounded-xl bg-sky-50 dark:bg-sky-950 text-sky-600 dark:text-sky-400 flex items-center justify-center border border-sky-100 dark:border-sky-900 group-hover:scale-105 transition-transform">
+                      <Icon className="w-4.5 h-4.5" />
+                    </div>
                   </div>
 
-                  <h3 className="text-base sm:text-lg font-bold text-sky-700 dark:text-sky-300 mb-2.5 leading-snug">
+                  <h3 className="text-base sm:text-lg font-bold text-sky-800 dark:text-sky-200 mb-2.5 leading-snug">
                     {pillar.title}
                   </h3>
 
@@ -80,8 +82,8 @@ export default function VisionSection() {
                   </p>
                 </div>
 
-                <div className="mt-5 pt-4 border-t border-sky-100 dark:border-sky-900/40 text-xs font-semibold text-sky-600 dark:text-sky-400 flex items-center space-x-1.5">
-                  <Sparkles className="w-3.5 h-3.5 shrink-0 text-sky-400" />
+                <div className="mt-5 pt-4 border-t border-sky-100 dark:border-sky-900/60 text-xs font-semibold text-sky-700 dark:text-sky-300 flex items-center space-x-1.5">
+                  <Sparkles className="w-3.5 h-3.5 shrink-0 text-sky-600 dark:text-sky-400" />
                   <span>{pillar.highlight}</span>
                 </div>
               </div>

@@ -76,15 +76,15 @@ export default function DynamicBackground() {
 
       const isDark = document.documentElement.classList.contains("dark");
 
-      // Halo radial subtil Candy Blue suivant la souris
+      // Halo radial subtil Bleu Nuit suivant la souris
       if (mouse.x > -100 && mouse.y > -100) {
         const glow = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 320);
         if (isDark) {
-          glow.addColorStop(0, "rgba(56, 189, 248, 0.22)");
-          glow.addColorStop(1, "rgba(56, 189, 248, 0)");
+          glow.addColorStop(0, "rgba(96, 165, 250, 0.18)");
+          glow.addColorStop(1, "rgba(96, 165, 250, 0)");
         } else {
-          glow.addColorStop(0, "rgba(14, 165, 233, 0.14)");
-          glow.addColorStop(1, "rgba(14, 165, 233, 0)");
+          glow.addColorStop(0, "rgba(3, 34, 76, 0.08)");
+          glow.addColorStop(1, "rgba(3, 34, 76, 0)");
         }
         ctx.fillStyle = glow;
         ctx.fillRect(0, 0, width, height);
@@ -111,29 +111,24 @@ export default function DynamicBackground() {
           p.y += (dy / dist) * 1.5;
         }
 
-        // Tracé du point Candy Blue
-        if (isDark) {
-          ctx.fillStyle = dist < 200 ? "#38bdf8" : "rgba(186, 230, 253, 0.75)";
-        } else {
-          ctx.fillStyle = dist < 200 ? "#0284c7" : "rgba(14, 165, 233, 0.6)";
-        }
+        // Rendu exclusif Bleu Nuit TG Master (#03224c / ice blue en dark)
+        const baseRgb = isDark ? "96, 165, 250" : "3, 34, 76";
+        const highlight = isDark ? "#93c5fd" : "#03224c";
+
+        ctx.fillStyle = dist < 200 ? highlight : `rgba(${baseRgb}, ${isDark ? 0.75 : 0.45})`;
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, dist < 200 ? 2.6 : 1.6, 0, Math.PI * 2);
         ctx.fill();
 
-        // Lignes de constellation Candy Blue entre particules proches
+        // Lignes de constellation entre particules proches
         for (let j = i + 1; j < particles.length; j++) {
           const q = particles[j];
           const distNodes = Math.sqrt((p.x - q.x) ** 2 + (p.y - q.y) ** 2);
 
           if (distNodes < 110) {
             const alpha = 0.35 * (1 - distNodes / 110);
-            if (isDark) {
-              ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
-            } else {
-              ctx.strokeStyle = `rgba(14, 165, 233, ${alpha * 0.85})`;
-            }
+            ctx.strokeStyle = `rgba(${baseRgb}, ${alpha * (isDark ? 1 : 0.85)})`;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(q.x, q.y);

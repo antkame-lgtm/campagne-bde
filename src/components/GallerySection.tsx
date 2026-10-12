@@ -1,71 +1,79 @@
 "use client";
 
 import React from "react";
-import { Camera, MapPin, Sparkles } from "lucide-react";
-import { CAMPUS_PHOTOS } from "../data/mockData";
+import { Camera, Users, Target } from "lucide-react";
 
 export default function GallerySection() {
+  const galleryItems = [
+    {
+      src: "/images/sami-groupe.jpg",
+      title: "Séminaire d'intégration au SAMI",
+      badge: "SAMI • Cohésion",
+      icon: Users,
+      description: "Moments forts et rassemblement de la communauté étudiante lors du séminaire au SAMI : esprit d'équipe, partage et dynamique collective.",
+    },
+    {
+      src: "/images/sami-paintball.jpg",
+      title: "Activité Paintball & Esprit d'équipe",
+      badge: "SAMI • Activités",
+      icon: Target,
+      description: "Défis sportifs et activités en plein air au SAMI pour tisser des liens forts et fédérer les étudiants de toutes les promotions.",
+    },
+  ];
+
   return (
-    <section id="photos" className="py-16 sm:py-24 bg-white dark:bg-slate-950 border-b border-sky-200 dark:border-sky-900/60 transition-colors duration-200">
+    <section id="photos" className="py-16 sm:py-24 bg-white dark:bg-[#020c1b] border-b border-sky-200/80 dark:border-sky-900/60 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* En-tête de section */}
-        <div className="max-w-3xl mb-14">
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200 dark:border-sky-800">
-            <Camera className="w-3.5 h-3.5 text-sky-500" />
-            <span>Section 8 • Sur le terrain &amp; au SAMI</span>
+        <div className="max-w-3xl mb-12 sm:mb-16">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1 bg-sky-50 dark:bg-sky-950/80 text-sky-700 dark:text-sky-300 rounded-full text-xs font-bold uppercase tracking-wider mb-3 border border-sky-200 dark:border-sky-800 shadow-2xs">
+            <Camera className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
+            <span>Vie de campus &amp; événements</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-600 dark:text-sky-400 tracking-tight">
-            Avec vous cette semaine &amp; au SAMI
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-sky-700 dark:text-sky-300 tracking-tight [text-wrap:balance]">
+            Moments forts au SAMI
           </h2>
           <p className="mt-4 text-base sm:text-lg text-sky-800 dark:text-sky-200 font-medium leading-relaxed">
-            Les moments partagés avec les étudiants sur le campus et lors de nos rencontres au SAMI. 
-            Cette galerie s&apos;enrichit tout au long de la semaine au fil des échanges !
+            Retour en images sur les activités d&apos;intégration et de cohésion étudiante au SAMI : esprit d&apos;équipe, dynamisme et convivialité au cœur de notre vision.
           </p>
         </div>
 
-        {/* Grille de photos aérée et épurée */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-          {CAMPUS_PHOTOS.map((photo, idx) => (
-            <div
-              key={idx}
-              className="group rounded-3xl overflow-hidden bg-white dark:bg-slate-900 border border-sky-100 dark:border-sky-900/60 hover:border-sky-300 dark:hover:border-sky-700 transition-all flex flex-col justify-between shadow-xs hover:shadow-md"
-            >
-              <div className="relative aspect-4/3 w-full overflow-hidden bg-sky-50 dark:bg-slate-950">
-                <img
-                  src={photo.imageUrl}
-                  alt={photo.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="inline-flex items-center space-x-1 px-3 py-1 bg-white/95 dark:bg-slate-900/95 backdrop-blur-sm rounded-full text-[11px] font-bold text-sky-600 dark:text-sky-300 shadow-xs border border-sky-100 dark:border-sky-800">
-                    <MapPin className="w-3 h-3 text-sky-500" />
-                    <span>{photo.tag}</span>
-                  </span>
+        {/* Grille des photos */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {galleryItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.src}
+                className="group rounded-3xl overflow-hidden border border-sky-200/80 dark:border-sky-800/80 bg-white dark:bg-[#041833]/80 shadow-xs hover:shadow-xl hover:shadow-sky-900/5 hover:border-sky-400 dark:hover:border-sky-600 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div className="relative overflow-hidden aspect-16/9 bg-slate-100 dark:bg-slate-800">
+                  <img
+                    src={item.src}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-bold bg-slate-950/80 backdrop-blur-md text-white border border-white/20 shadow-md">
+                      <Icon className="w-3 h-3 text-sky-300" />
+                      <span>{item.badge}</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-7 space-y-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-sky-800 dark:text-sky-200 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-sky-800/80 dark:text-sky-300 font-normal leading-relaxed">
+                    {item.description}
+                  </p>
                 </div>
               </div>
-
-              <div className="p-6 space-y-1">
-                <h3 className="text-base sm:text-lg font-bold text-sky-800 dark:text-sky-200 leading-snug">
-                  {photo.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-sky-600 dark:text-sky-400 font-medium">
-                  {photo.subtitle}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Note d'actualisation de la semaine */}
-        <div className="mt-10 p-5 rounded-2xl bg-sky-50/60 dark:bg-slate-900/60 border border-sky-100 dark:border-sky-900/40 flex items-center justify-between flex-col sm:flex-row gap-4">
-          <div className="flex items-center space-x-3 text-xs sm:text-sm text-sky-800 dark:text-sky-200 font-medium">
-            <Sparkles className="w-4 h-4 text-sky-500 shrink-0" />
-            <span>Retrouvez-nous cette semaine sur le campus et au SAMI pour échanger et immortaliser nos moments ensemble !</span>
-          </div>
-          <span className="text-xs font-mono font-bold text-sky-500 shrink-0">
-            #Campagne2026 #SAMI
-          </span>
+            );
+          })}
         </div>
 
       </div>
