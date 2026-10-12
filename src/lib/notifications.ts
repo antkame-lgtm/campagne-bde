@@ -20,30 +20,37 @@ function escapeTelegramMarkdown(text: string): string {
 }
 
 /**
- * Requête fetch résiliente gérant les certificats locaux Windows / antivirus
+ * Requête fetch résiliente gérant les certificats locaux et les micro-coupures réseau (ECONNRESET)
  */
-async function resilientFetch(url: string, options: RequestInit): Promise<Response> {
-  try {
-    return await fetch(url, options);
-  } catch (err: any) {
-    if (
-      err?.cause?.code === "UNABLE_TO_VERIFY_LEAF_SIGNATURE" ||
-      err?.message?.includes("unable to verify")
-    ) {
-      const prev = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
-      process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-      try {
-        return await fetch(url, options);
-      } finally {
-        if (prev !== undefined) {
-          process.env.NODE_TLS_REJECT_UNAUTHORIZED = prev;
-        } else {
-          delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+async function resilientFetch(url: string, options: RequestInit, maxRetries = 2): Promise<Response> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fetch(url, options);
+    } catch (err: any) {
+      lastError = err;
+      if (
+        err?.cause?.code === "UNABLE_TO_VERIFY_LEAF_SIGNATURE" ||
+        err?.message?.includes("unable to verify")
+      ) {
+        const prev = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+        process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+        try {
+          return await fetch(url, options);
+        } finally {
+          if (prev !== undefined) {
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = prev;
+          } else {
+            delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+          }
         }
       }
+      if (attempt < maxRetries) {
+        await new Promise((resolve) => setTimeout(resolve, 500 * (attempt + 1)));
+      }
     }
-    throw err;
   }
+  throw lastError;
 }
 
 /**
